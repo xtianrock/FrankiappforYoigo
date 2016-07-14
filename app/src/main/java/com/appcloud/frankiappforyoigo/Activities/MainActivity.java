@@ -10,6 +10,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -19,18 +20,33 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.appcloud.frankiappforyoigo.Fragments.HomeFragment;
 import com.appcloud.frankiappforyoigo.Fragments.Terminales;
 import com.appcloud.frankiappforyoigo.POJO.OfertaTactica;
 
 import com.appcloud.frankiappforyoigo.R;
 import com.appcloud.frankiappforyoigo.Utils.Commons;
+import com.appcloud.frankiappforyoigo.Utils.FirebaseSingleton;
+import com.appcloud.frankiappforyoigo.Utils.PicassoRoundedTransformation;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserInfo;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -38,17 +54,18 @@ public class MainActivity extends AppCompatActivity
     Context context = this;
     String currentFragmentTag;
     Fragment fragment;
-    AppBarLayout appBarLayout;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FirebaseSingleton.getDatabase();
 
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,16 +74,9 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
+        prepareNavigation();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
-        switchToFragment(new Terminales(), "Terminales", false);
+        switchToFragment(new HomeFragment(), "Yoigo Holea Hueva", false);
     }
 
     @Override
@@ -113,10 +123,11 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
         fragment = null;
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_home) {
+            fragment = new HomeFragment();
+        }else if(id == R.id.nav_terminales) {
             fragment = new Terminales();
         }
-
         // Insert the fragment by replacing any existing fragment
         if (fragment != null) {
             switchToFragment(fragment, item.getTitle().toString(), false);
@@ -125,6 +136,42 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    private void prepareNavigation(){
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View header = navigationView.getHeaderView(0);
+        TextView tvUserName = (TextView)header.findViewById(R.id.nav_user_name);
+        TextView tvUserEmail = (TextView)header.findViewById(R.id.nav_user_email);
+        ImageView ivUserPhoto = (ImageView)header.findViewById(R.id.nav_user_photo);
+        navigationView.setNavigationItemSelectedListener(this);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        if (user != null) {
+            String userName = "";
+            String userPhoto = "";
+            List<UserInfo> providers = (List<UserInfo>) user.getProviderData();
+            for (UserInfo userInfo : providers) {
+                if (userInfo.getProviderId().equals("google.com")) {
+                    userName = userInfo.getDisplayName();
+                    if(userInfo.getPhotoUrl()!=null){
+                        userPhoto = userInfo.getPhotoUrl().toString();
+                    }
+                }
+            }
+            tvUserEmail.setText(user.getEmail());
+            tvUserName.setText(userName);
+            Picasso.with(this).load(userPhoto).transform(new PicassoRoundedTransformation()).into(ivUserPhoto);
+        }
+
+
+    }
+
     public void switchToFragment(Fragment fragment, String title, boolean backStack) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         String tag = fragment.getClass().getCanonicalName();
@@ -172,23 +219,41 @@ public class MainActivity extends AppCompatActivity
             dialog.show();
         }
 
-        protected void onPostExecute( ArrayList<OfertaTactica> ofertas )
+        protected void onPostExecute(final ArrayList<OfertaTactica> ofertas )
         {
             if(ofertas!=null)
             {
-                DatabaseReference myRef = FirebaseDatabase.getInstance().getReference();
-                char[] caracteres = new char[]{'$','-','_','.','+','!','*','(',',',')','\'',' ','/'};
-                for (OfertaTactica oferta:ofertas) {
-                    String key = oferta.getTerminal();
-                    for (char caracter: caracteres) {
-                        key = key.replace( caracter,':');
+                final DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("ofertas_tacticas");
+
+                myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        Map<String, Object> updateActivo = new HashMap();
+                        for (DataSnapshot snapshot: dataSnapshot.getChildren()){
+                            updateActivo.put(snapshot.getKey()+"/activo",false);
+                        }
+                        myRef.updateChildren(updateActivo, new DatabaseReference.CompletionListener() {
+                            @Override
+                            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                                char[] caracteres = new char[]{'$','-','_','.','+','!','*','(',',',')','\'',' ','/'};
+                                for (OfertaTactica oferta:ofertas) {
+                                    String key = oferta.getTerminal();
+                                    for (char caracter: caracteres) {
+                                        key = key.replace( caracter,':');
+                                    }
+                                    Map<String, Object> asd = oferta.toMap();
+                                    myRef.child(key).updateChildren(asd);
+                                }
+                            }
+                        });
                     }
-                    Map<String, Object> postValues = oferta.toMap();
-                    Map<String, Object> childUpdates = new HashMap<>();
-                    childUpdates.put("/ofertas_tacticas/" + key, postValues);
-                    // childUpdates.put("/comerciales-ofertas/" + getUid() + "/" + keyOferta, postValues);
-                    myRef.updateChildren(childUpdates);
-                }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
             }
             if(dialog.isShowing())
                 dialog.dismiss();

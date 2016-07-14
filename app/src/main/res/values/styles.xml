@@ -19,6 +19,31 @@
     <item name="android:windowContentOverlay">@null</item>
     </style>
 
+    <style name="AppTheme.NoActionBar.cero">
+        <item name="colorPrimary">@color/color_cero</item>
+        <item name="colorPrimaryDark">@color/color_cero_dark</item>
+        <item name="colorAccent">@color/color_cero_accent</item>
+        <item name="android:textColor">@color/color_cero</item>
+    </style>
+    <style name="AppTheme.NoActionBar.cinco">
+        <item name="colorPrimary">@color/color_cinco</item>
+        <item name="colorPrimaryDark">@color/color_cinco_dark</item>
+        <item name="colorAccent">@color/color_cinco_accent</item>
+        <item name="android:textColor">@color/color_cinco</item>
+    </style>
+    <style name="AppTheme.NoActionBar.sinfin">
+        <item name="colorPrimary">@color/color_sinfin</item>
+        <item name="colorPrimaryDark">@color/color_sinfin_dark</item>
+        <item name="colorAccent">@color/color_sinfin_accent</item>
+        <item name="android:textColor">@color/color_sinfin</item>
+    </style>
+    <style name="AppTheme.NoActionBar.unico">
+        <item name="colorPrimary">@color/color_pago_unico</item>
+        <item name="colorPrimaryDark">@color/color_pago_unico_dark</item>
+        <item name="colorAccent">@color/color_pago_unico_accent</item>
+        <item name="android:textColor">@color/color_pago_unico</item>
+    </style>
+
 
 
     <style name="ExpandedToolbarLayoutTextStyle" parent="AppTheme.NoActionBar">

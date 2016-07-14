@@ -26,6 +26,7 @@ public class OfertaTactica {
     private String pagoFinalCero;
     private String pagoFinalCinco;
     private String pagoFinalSinFin;
+    private boolean activo;
 
     public OfertaTactica() {
     }
@@ -158,11 +159,18 @@ public class OfertaTactica {
         this.pagoFinalSinFin = pagoFinalSinFin;
     }
 
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
+
     @Exclude
     public Map<String, Object> toMap() {
         HashMap<String, Object> result = new HashMap<>();
         result.put("terminal", terminal);
-        result.put("foto", foto);
         result.put("financiacionCero", financiacionCero);
         result.put("financiacionCinco", financiacionCinco);
         result.put("financiacionSinFin", financiacionSinFin);
@@ -176,7 +184,8 @@ public class OfertaTactica {
         result.put("pagoInicialSinFin", pagoInicialSinFin);
         result.put("pagoFinalCero", pagoFinalCero);
         result.put("pagoFinalCinco", pagoFinalCinco);
-        result.put("pagoFinalSinFin", pagoFinalSinFin);      
+        result.put("pagoFinalSinFin", pagoFinalSinFin);
+        result.put("activo", activo);
 
         return result;      
     }

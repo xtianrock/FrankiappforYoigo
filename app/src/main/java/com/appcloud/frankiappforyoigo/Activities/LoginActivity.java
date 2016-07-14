@@ -71,6 +71,7 @@ public class LoginActivity extends AppCompatActivity {
         lnlogin = (LinearLayout)findViewById(R.id.ln_login_form);
         mProgressView = findViewById(R.id.login_progress);
 
+
         runnable = new Runnable() {
             @Override
             public void run() {
@@ -86,7 +87,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken("350241888413-vp13pqpsl7kj5em46s66l50947s8n8tg.apps.googleusercontent.com")
+                .requestIdToken("557537829634-l3hom3rrsb0npsna126sfdveu0oq8fic.apps.googleusercontent.com")
                 .requestEmail()
                 .requestProfile()
                 .requestId()
@@ -130,7 +131,6 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
                 startActivityForResult(signInIntent, RC_SIGN_IN);
-                showProgress(true);
             }
         });
     }
@@ -157,15 +157,15 @@ public class LoginActivity extends AppCompatActivity {
 
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
+
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             if (result.isSuccess()) {
                 // Google Sign In was successful, authenticate with Firebase
+                showProgress(true);
                 GoogleSignInAccount account = result.getSignInAccount();
                 firebaseAuthWithGoogle(account);
             } else {
                 Log.d(TAG, "Google Sign In failed, update UI appropriately");
-                Toast.makeText(this, "no entra ni queriendo", Toast.LENGTH_SHORT).show();
-                startMainActivity();
             }
         }
     }

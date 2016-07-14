@@ -8,4 +8,11 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tarifa_cero">LA DEL CERO 1,2 GB</string>
+    <string name="tarifa_cinco">LA DEL CERO 5 GB</string>
+    <string name="tarifa_sinfin">LA SINFÍN 20 GB</string>
+    <string name="tarifa_uno">LA DEL UNO 1 GB</string>
+    <string name="tarifa_650">LA DEL UNO 650 MB</string>
+    <string name="pago_unico_prepago">Pago unico prepago</string>
+    <string name="pago_unico_contrato">Pago unico contrato</string>
 </resources>

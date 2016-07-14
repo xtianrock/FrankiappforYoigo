@@ -1,35 +1,35 @@
 {
   "project_info": {
-    "project_number": "350241888413",
-    "firebase_url": "https://frankiapp-yoigo.firebaseio.com",
-    "project_id": "frankiapp-yoigo",
-    "storage_bucket": "frankiapp-yoigo.appspot.com"
+    "project_number": "557537829634",
+    "firebase_url": "https://frankiapp-for-yoigo.firebaseio.com",
+    "project_id": "frankiapp-for-yoigo",
+    "storage_bucket": "frankiapp-for-yoigo.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:350241888413:android:eccb4c83f5251711",
+        "mobilesdk_app_id": "1:557537829634:android:eccb4c83f5251711",
         "android_client_info": {
           "package_name": "com.appcloud.frankiappforyoigo"
         }
       },
       "oauth_client": [
         {
-          "client_id": "350241888413-vp13pqpsl7kj5em46s66l50947s8n8tg.apps.googleusercontent.com",
+          "client_id": "557537829634-6lbjnjukjo6bei0sssj3ie55c4ggqdn9.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.appcloud.frankiappforyoigo",
-            "certificate_hash": "B63498A552B93FAA515E24DE183E56983E84E0D8"
+            "certificate_hash": "350E5397442D7827086EB74A5E91D72C76D0CC05"
           }
         },
         {
-          "client_id": "350241888413-5p9ikt0lhshp21p7qj1s815boh6n0odq.apps.googleusercontent.com",
+          "client_id": "557537829634-l3hom3rrsb0npsna126sfdveu0oq8fic.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAwsTCNAHWsfsJ8l5IYd3uA8DB5xXyHc2s"
+          "current_key": "AIzaSyB_A_OxuytDBrscv3tfXj7CyVV3_2Oj6dA"
         }
       ],
       "services": {
@@ -40,7 +40,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "350241888413-5p9ikt0lhshp21p7qj1s815boh6n0odq.apps.googleusercontent.com",
+              "client_id": "557537829634-l3hom3rrsb0npsna126sfdveu0oq8fic.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

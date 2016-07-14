@@ -4,6 +4,16 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="color_cero">#f08f00</color>
+    <color name="color_cero_dark">#ef6c00</color>
+    <color name="color_cero_accent">#00bfa5</color>
     <color name="color_cinco">#7fb52b</color>
+    <color name="color_cinco_dark">#689f38</color>
+    <color name="color_cinco_accent">#FFC107</color>
     <color name="color_sinfin">#b04192</color>
+    <color name="color_sinfin_dark">#893272</color>
+    <color name="color_sinfin_accent">#03A9F4</color>
+    <color name="color_pago_unico">#9e9e9e</color>
+    <color name="color_pago_unico_dark">#757575</color>
+    <color name="color_pago_unico_accent">#00b8d4</color>
+    <color name="background">#e0e0e0</color>
 </resources>
