@@ -677,7 +677,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:minHeight="220dp"
+                android:layout_marginTop="@dimen/margin_tarifa"
                 android:orientation="vertical">
                 <LinearLayout
                     android:id="@+id/ln_pago_unico_prepago"
@@ -685,7 +685,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:orientation="vertical"
-                    android:layout_marginTop="@dimen/margin_tarifa"
+                    android:paddingBottom="5dp"
                     android:background="@color/color_pago_unico">
                     <TextView
                         android:id="@+id/tv_etiqueta_prepago"
@@ -801,7 +801,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="@string/tarifa_cero"
                                 android:textColor="@android:color/white"
-                                android:textSize="16sp"
+                                android:textSize="12sp"
                                 android:textAlignment="center"
                                 android:gravity="center"/>
                             <TextView
@@ -830,7 +830,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="@string/tarifa_cinco"
                                 android:textColor="@android:color/white"
-                                android:textSize="16sp"
+                                android:textSize="12sp"
                                 android:textAlignment="center"
                                 android:gravity="center"/>
                             <TextView
@@ -858,7 +858,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="@string/tarifa_sinfin"
                                 android:textColor="@android:color/white"
-                                android:textSize="16sp"
+                                android:textSize="12dp"
                                 android:textAlignment="center"
                                 android:gravity="center"/>
                             <TextView

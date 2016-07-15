@@ -111,30 +111,30 @@ public class DetalleTerminalActivity extends AppCompatActivity {
                         lnPagoUnicoContrato.setVisibility(View.GONE);
                     }
                     if (ofertaTactica.getPagoUnicoPrepago() != null && !ofertaTactica.getPagoUnicoPrepago().equals("")) {
-                        tvPrepagoUno.setText(ofertaTactica.getPagoUnicoPrepago());
-                        tvPrepago650.setText(ofertaTactica.getPagoUnicoPrepago());
+                        tvPrepagoUno.setText(Commons.tratarPrecio(ofertaTactica.getPagoUnicoPrepago())+"€");
+                        tvPrepago650.setText(Commons.tratarPrecio(ofertaTactica.getPagoUnicoPrepago())+"€");
                     }
                     if (ofertaTactica.getPagoUnicoCero() == null || ofertaTactica.getPagoUnicoCero().equals("")) {
                         lnPagoUnicoCero.setVisibility(View.GONE);
                     }else{
-                        tvPagoUnicoCero.setText(ofertaTactica.getPagoUnicoCero());
+                        tvPagoUnicoCero.setText(Commons.tratarPrecio(ofertaTactica.getPagoUnicoCero())+"€");
                     }
                     if (ofertaTactica.getPagoUnicoCinco() == null || ofertaTactica.getPagoUnicoCinco().equals("")) {
                         lnPagoUnicoCinco.setVisibility(View.GONE);
                     }else{
-                        tvPagoUnicoCinco.setText(ofertaTactica.getPagoUnicoCinco());
+                        tvPagoUnicoCinco.setText(Commons.tratarPrecio(ofertaTactica.getPagoUnicoCinco())+"€");
                     }
                     if (ofertaTactica.getPagoUnicoSinFin() == null || ofertaTactica.getPagoUnicoSinFin().equals("")) {
                          lnPagoUnicoSinfin.setVisibility(View.GONE);
                     }else{
-                        tvPagoUnicoSinfin.setText(ofertaTactica.getPagoUnicoSinFin());
+                        tvPagoUnicoSinfin.setText(Commons.tratarPrecio(ofertaTactica.getPagoUnicoSinFin())+"€");
                     }
                     lnCero.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             LinearLayout ln_color = (LinearLayout) v.findViewById(R.id.ln_color_cero);
                             TextView tvTarifa = (TextView) v.findViewById(R.id.tv_tarifa_cero);
-                            clickTarifa(ln_color, tvTarifa, Configuracion.TARIFA_CERO);
+                            clickTarifa(ln_color, tvTarifa, Configuracion.TARIFA_CERO, false);
                         }
                     });
                     lnCinco.setOnClickListener(new View.OnClickListener() {
@@ -142,7 +142,7 @@ public class DetalleTerminalActivity extends AppCompatActivity {
                         public void onClick(View v) {
                             LinearLayout ln_color = (LinearLayout) v.findViewById(R.id.ln_color_cinco);
                             TextView tvTarifa = (TextView) v.findViewById(R.id.tv_tarifa_cinco);
-                            clickTarifa(ln_color, tvTarifa, Configuracion.TARIFA_CINCO);
+                            clickTarifa(ln_color, tvTarifa, Configuracion.TARIFA_CINCO, false);
                         }
                     });
                     lnSinfin.setOnClickListener(new View.OnClickListener() {
@@ -150,42 +150,46 @@ public class DetalleTerminalActivity extends AppCompatActivity {
                         public void onClick(View v) {
                             LinearLayout ln_color = (LinearLayout) v.findViewById(R.id.ln_color_sinfin);
                             TextView tvTarifa = (TextView) v.findViewById(R.id.tv_tarifa_sinfin);
-                            clickTarifa(ln_color, tvTarifa, Configuracion.TARIFA_SINFIN);
+                            clickTarifa(ln_color, tvTarifa, Configuracion.TARIFA_SINFIN, false);
                         }
                     });
                     lnPagoUnicoUno.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            TextView tvTarifa = (TextView) v.findViewById(R.id.tv_tarifa_prepago_uno);
-                            clickTarifa((LinearLayout) v, tvTarifa, Configuracion.TARIFA_UNO);
+                            if(ofertaTactica.getPagoUnicoPrepago()!=null && !ofertaTactica.getPagoUnicoPrepago().equals("")){
+                                TextView tvTarifa = (TextView) v.findViewById(R.id.tv_tarifa_prepago_uno);
+                                clickTarifa((LinearLayout) v, tvTarifa, Configuracion.TARIFA_UNO, false);
+                            }
                         }
                     });
                     lnPagoUnico650.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            TextView tvTarifa = (TextView) v.findViewById(R.id.tv_tarifa_prepago_650);
-                            clickTarifa((LinearLayout) v, tvTarifa, Configuracion.TARIFA_650);
+                            if(ofertaTactica.getPagoUnicoPrepago()!=null && !ofertaTactica.getPagoUnicoPrepago().equals("")) {
+                                TextView tvTarifa = (TextView) v.findViewById(R.id.tv_tarifa_prepago_650);
+                                clickTarifa((LinearLayout) v, tvTarifa, Configuracion.TARIFA_650, false);
+                            }
                         }
                     });
                     lnPagoUnicoCero.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             TextView tvTarifa = (TextView) v.findViewById(R.id.tv_tarifa_contrato_cero);
-                            clickTarifa((LinearLayout) v, tvTarifa, Configuracion.TARIFA_CERO);
+                            clickTarifa((LinearLayout) v, tvTarifa, Configuracion.TARIFA_CERO, true);
                         }
                     });
                     lnPagoUnicoCinco.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             TextView tvTarifa = (TextView) v.findViewById(R.id.tv_tarifa_contrato_cinco);
-                            clickTarifa((LinearLayout) v, tvTarifa, Configuracion.TARIFA_CINCO);
+                            clickTarifa((LinearLayout) v, tvTarifa, Configuracion.TARIFA_CINCO, true);
                         }
                     });
                     lnPagoUnicoSinfin.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             TextView tvTarifa = (TextView) v.findViewById(R.id.tv_tarifa_contrato_sinfin);
-                            clickTarifa((LinearLayout) v, tvTarifa, Configuracion.TARIFA_SINFIN);
+                            clickTarifa((LinearLayout) v, tvTarifa, Configuracion.TARIFA_SINFIN, true);
                         }
                     });
 
@@ -201,10 +205,11 @@ public class DetalleTerminalActivity extends AppCompatActivity {
     }
 
 
-    private void clickTarifa(LinearLayout linearLayout, TextView textView, int tarifa) {
+    private void clickTarifa(LinearLayout linearLayout, TextView textView, int tarifa, boolean pagoUnico) {
         Intent intent = new Intent(context, ReservaActivity.class);
         intent.putExtra(Configuracion.KEY_TERMINAL, keyTerminal);
         intent.putExtra(Configuracion.TARIFA, tarifa);
+        intent.putExtra(Configuracion.PAGO_UNICO, pagoUnico);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             ivFotoTerminal.setTransitionName("foto_terminal");

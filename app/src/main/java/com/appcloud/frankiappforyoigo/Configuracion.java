@@ -14,5 +14,6 @@ public class Configuracion {
 
     public static final String KEY_TERMINAL = "key_terminal";
     public static final String TARIFA = "tarifa";
+    public static final String PAGO_UNICO = "pago_unico";
 
 }
