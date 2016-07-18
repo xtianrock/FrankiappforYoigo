@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardBackgroundColor="@android:color/holo_orange_dark"
+        card_view:cardCornerRadius="2dp"
+        android:layout_marginTop="10dp"
+        android:elevation="5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/iv_reserva_foto"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:transitionName="foto_terminal"
+            android:src="@drawable/ic_account_box"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="8dp"
+            android:orientation="vertical">
+            <TextView
+            android:id="@+id/tv_reserva_nombre"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+                android:layout_weight="1"
+            android:layout_centerVertical="true"
+            android:textColor="@android:color/white"
+            android:layout_toRightOf="@+id/iv_terminal_foto"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="nombre usuario"/>
+            <TextView
+                android:id="@+id/tv_reserva_email"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_centerVertical="true"
+                android:textColor="@android:color/white"
+                android:layout_toRightOf="@+id/iv_terminal_foto"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Email"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/tv_reserva_telefono"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_centerVertical="true"
+                    android:textColor="@android:color/white"
+                    android:layout_toRightOf="@+id/iv_terminal_foto"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="654685107"
+                    android:textSize="15sp"/>
+                <TextView
+                    android:id="@+id/tv_reserva_fecha"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_centerVertical="true"
+                    android:textColor="@android:color/white"
+                    android:layout_toRightOf="@+id/iv_terminal_foto"
+                    android:layout_marginLeft="16dp"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="20/08/2016"
+                    android:textSize="15sp"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+
+
+
+
+
+    </android.support.v7.widget.CardView>
+

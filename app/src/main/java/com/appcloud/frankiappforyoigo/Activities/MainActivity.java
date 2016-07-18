@@ -25,6 +25,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.appcloud.frankiappforyoigo.Fragments.HomeFragment;
+import com.appcloud.frankiappforyoigo.Fragments.Reservas;
 import com.appcloud.frankiappforyoigo.Fragments.Terminales;
 import com.appcloud.frankiappforyoigo.POJO.OfertaTactica;
 
@@ -51,10 +52,11 @@ import java.util.Objects;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    Context context = this;
-    String currentFragmentTag;
-    Fragment fragment;
-    Toolbar toolbar;
+    private Context context = this;
+    private String currentFragmentTag;
+    private Fragment fragment;
+    private Toolbar toolbar;
+    private Snackbar snackbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +87,13 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+                //super.onBackPressed();
+                if (snackbar != null && snackbar.isShown())
+                    finish();
+                else {
+                    snackbar = Snackbar.make(toolbar, "Pulse de nuevo para salir", Snackbar.LENGTH_SHORT);
+                    snackbar.show();
+                }
         }
     }
 
@@ -127,7 +135,9 @@ public class MainActivity extends AppCompatActivity
             fragment = new HomeFragment();
         }else if(id == R.id.nav_terminales) {
             fragment = new Terminales();
-        }
+        }else if(id == R.id.nav_reservas) {
+        fragment = new Reservas();
+    }
         // Insert the fragment by replacing any existing fragment
         if (fragment != null) {
             switchToFragment(fragment, item.getTitle().toString(), false);
@@ -164,7 +174,7 @@ public class MainActivity extends AppCompatActivity
                     }
                 }
             }
-            tvUserEmail.setText(user.getEmail());
+                tvUserEmail.setText(user.getEmail());
             tvUserName.setText(userName);
             Picasso.with(this).load(userPhoto).transform(new PicassoRoundedTransformation()).into(ivUserPhoto);
         }
@@ -259,4 +269,6 @@ public class MainActivity extends AppCompatActivity
                 dialog.dismiss();
         }
     }
+
+
 }

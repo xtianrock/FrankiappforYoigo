@@ -210,6 +210,7 @@ public class DetalleTerminalActivity extends AppCompatActivity {
         intent.putExtra(Configuracion.KEY_TERMINAL, keyTerminal);
         intent.putExtra(Configuracion.TARIFA, tarifa);
         intent.putExtra(Configuracion.PAGO_UNICO, pagoUnico);
+        intent.setAction(Configuracion.RESERVAR);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             ivFotoTerminal.setTransitionName("foto_terminal");

@@ -10,6 +10,10 @@
             android:id="@+id/nav_terminales"
             android:icon="@drawable/ic_phone_iphone_black_24dp"
             android:title="Terminales" />
+        <item
+            android:id="@+id/nav_reservas"
+            android:icon="@drawable/ic_reservas"
+            android:title="Reservas" />
     </group>
 
     <item android:title="Communicate">
