@@ -28,6 +28,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/colorPrimary">
                 <ImageView
+                    android:padding="8dp"
                     android:id="@+id/iv_terminal_foto"
                     android:layout_width="match_parent"
                     android:layout_height="250dp"

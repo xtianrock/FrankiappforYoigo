@@ -16,4 +16,5 @@
     <color name="color_pago_unico_dark">#757575</color>
     <color name="color_pago_unico_accent">#00b8d4</color>
     <color name="background">#e0e0e0</color>
+    <color name="color_spec">#e0e0e0</color>
 </resources>

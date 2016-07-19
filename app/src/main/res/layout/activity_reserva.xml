@@ -215,16 +215,17 @@
         </LinearLayout>
 
     </android.support.design.widget.AppBarLayout>
+
     <LinearLayout
+        android:id="@+id/ln_content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:padding="3dp"
             android:textSize="35sp"
             android:textStyle="bold"
             android:typeface="sans"
@@ -238,20 +239,21 @@
             android:textSize="20sp"
             android:text="BQ aquaris"/>
         <LinearLayout
+            android:visibility="visible"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:orientation="horizontal">
             <ImageView
                 android:id="@+id/iv_terminal_foto"
                 android:layout_width="0dp"
-                android:layout_height="150dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"/>
             <LinearLayout
                 android:id="@+id/ln_cuota_terminal"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_marginRight="10dp">
+                android:layout_weight="1">
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -287,30 +289,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:padding="3dp"
             android:textSize="35sp"
             android:textStyle="bold"
             android:typeface="sans"
             android:text="="/>
-
         <LinearLayout
             android:id="@+id/ln_detalle_total"
             android:visibility="visible"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_margin="5dp">
+            android:layout_margin="3dp">
             <LinearLayout
                 android:id="@+id/ln_pago_inicial"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:elevation="3dp"
                 android:layout_margin="5dp"
-                android:background="@drawable/background_cero">
+                android:background="?attr/colorPrimary">
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:gravity="center"
                     android:orientation="vertical">
                     <TextView
@@ -354,11 +354,11 @@
             <LinearLayout
                 android:id="@+id/ln_cuota_total"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:elevation="3dp"
                 android:layout_margin="5dp"
-                android:background="@drawable/background_cero">
+                android:background="?attr/colorPrimary">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -405,14 +405,14 @@
             <LinearLayout
                 android:id="@+id/ln_pago_final"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:elevation="3dp"
                 android:layout_margin="5dp"
-                android:background="@drawable/background_cero">
+                android:background="?attr/colorPrimary">
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:gravity="center"
                     android:orientation="vertical">
                     <TextView
@@ -456,18 +456,20 @@
             </LinearLayout>
 
         </LinearLayout>
-
         <Button
             android:id="@+id/bt_reserva"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:gravity="center"
             android:text="¡LO QUIERO!"
             android:textSize="20sp"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            android:background="?attr/colorPrimary"/>
 
     </LinearLayout>
+
+
 
 
 

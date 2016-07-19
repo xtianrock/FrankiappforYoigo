@@ -19,7 +19,9 @@
             android:orientation="horizontal"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:padding="8dp">
+            android:paddingTop="8dp"
+            android:paddingRight="5dp"
+            android:paddingLeft="5dp">
 
             <ImageView
                 android:id="@+id/iv_terminal_foto"
@@ -36,13 +38,15 @@
             <TextView
                 android:id="@+id/tv_terminal_nombre"
                 android:layout_width="wrap_content"
-                android:lines="2"
+                android:ellipsize="end"
+                android:singleLine="true"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@+id/iv_terminal_foto"
                 android:layout_margin="8dp"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Nexus 5x 16 GB"/>
+                android:text="Nexus 5x 16 GB"
+                android:textSize="14sp"/>
             <LinearLayout
                 android:visibility="gone"
                 android:layout_width="match_parent"

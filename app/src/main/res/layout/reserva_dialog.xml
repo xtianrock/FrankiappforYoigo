@@ -23,7 +23,7 @@
         android:layout_marginRight="24dp"
         android:layout_marginBottom="20dp"
 
-        android:text="Genial, ahora solo te queda acercarte a tu tienda Yoigo en Holea, formalizar tu contrato.\n\nUna ultima cosa, dejanos tu telefono para registrar tu solicitud y que puedas llevarte tu regalo"
+        android:text="Genial, ahora solo te queda facilitarnos tu nº de telefono para registrar tu solicitud y que puedas llevarte tu regalo."
         android:textSize="18sp"
         android:textAppearance="@color/abc_color_highlight_material"
         android:textColor="@color/abc_secondary_text_material_light" />

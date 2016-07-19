@@ -19,11 +19,8 @@ import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.TextView;
 
 import com.appcloud.frankiappforyoigo.Activities.DetalleTerminalActivity;
-import com.appcloud.frankiappforyoigo.Activities.MainActivity;
 import com.appcloud.frankiappforyoigo.Configuracion;
 import com.appcloud.frankiappforyoigo.POJO.OfertaTactica;
 import com.appcloud.frankiappforyoigo.R;
@@ -46,8 +43,8 @@ public class HomeFragment extends Fragment {
     private DatabaseReference mDatabase;
     private FirebaseRecyclerAdapter adapterMasVendidos;
     private FirebaseRecyclerAdapter adapterLoquesea;
-    private RecyclerView rvMasVendidos;
-    private RecyclerView rvLoquesea;
+    private RecyclerView rvNuevosModelos;
+    private RecyclerView rvMasBuscados;
     private ViewPager viewPager;
     private ViewPagerAdapter  viewPagerAdapter;
     private RadioButton rb1, rb2, rb3, rb4, rb5;
@@ -63,10 +60,13 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         final View parentView = inflater.inflate(R.layout.fragment_home, container, false);
         mDatabase = FirebaseSingleton.getDatabase().getReference();
-        rvMasVendidos = (RecyclerView)parentView.findViewById(R.id.list_mas_vendidos);
-        rvLoquesea = (RecyclerView)parentView.findViewById(R.id.list);
-        rvMasVendidos.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
-        rvLoquesea.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+        rvNuevosModelos = (RecyclerView)parentView.findViewById(R.id.list_mas_vendidos);
+        rvMasBuscados = (RecyclerView)parentView.findViewById(R.id.list);
+        rvNuevosModelos.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
+        layoutManager.setReverseLayout(true);
+        layoutManager.setStackFromEnd(true);
+        rvMasBuscados.setLayoutManager(layoutManager);
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference imagesRef = storage.getReferenceFromUrl("gs://frankiapp-for-yoigo.appspot.com").child("images");
 
@@ -187,7 +187,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Query query = mDatabase.child("ofertas_tacticas").orderByChild("foto").limitToFirst(5);
+        Query query = mDatabase.child("ofertas_tacticas").orderByChild("nuevo").equalTo(true);
         adapterMasVendidos = new FirebaseRecyclerAdapter<OfertaTactica,TerminalesViewHolder>(OfertaTactica.class,R.layout.cardview_terminales_home,TerminalesViewHolder.class,query) {
 
             @Override
@@ -213,8 +213,8 @@ public class HomeFragment extends Fragment {
                 viewHolder.bindToOferta(getActivity().getApplicationContext(),terminal,onClickListener);
             }
         };
-        rvMasVendidos.setAdapter(adapterMasVendidos);
-        Query query2 = mDatabase.child("ofertas_tacticas").limitToFirst(5);
+        rvNuevosModelos.setAdapter(adapterMasVendidos);
+        Query query2 = mDatabase.child("ofertas_tacticas").orderByChild("reservas").limitToLast(5);
         adapterLoquesea = new FirebaseRecyclerAdapter<OfertaTactica,TerminalesViewHolder>(OfertaTactica.class,R.layout.cardview_terminales_home,TerminalesViewHolder.class,query2) {
 
             @Override
@@ -240,7 +240,7 @@ public class HomeFragment extends Fragment {
                 viewHolder.bindToOferta(getActivity().getApplicationContext(),terminal,onClickListener);
             }
         };
-        rvLoquesea.setAdapter(adapterLoquesea);
+        rvMasBuscados.setAdapter(adapterLoquesea);
         handler = new Handler();
         runnable = new Runnable() {
             @Override

@@ -29,6 +29,7 @@ import com.appcloud.frankiappforyoigo.Fragments.Reservas;
 import com.appcloud.frankiappforyoigo.Fragments.Terminales;
 import com.appcloud.frankiappforyoigo.POJO.OfertaTactica;
 
+import com.appcloud.frankiappforyoigo.POJO.User;
 import com.appcloud.frankiappforyoigo.R;
 import com.appcloud.frankiappforyoigo.Utils.Commons;
 import com.appcloud.frankiappforyoigo.Utils.FirebaseSingleton;
@@ -49,7 +50,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private Context context = this;
@@ -60,21 +61,11 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        FirebaseSingleton.getDatabase();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FirebaseSingleton.getDatabase();
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         prepareNavigation();
 
@@ -97,7 +88,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    @Override
+  /*  @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
@@ -124,7 +115,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -148,38 +139,70 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void prepareNavigation(){
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View header = navigationView.getHeaderView(0);
         TextView tvUserName = (TextView)header.findViewById(R.id.nav_user_name);
         TextView tvUserEmail = (TextView)header.findViewById(R.id.nav_user_email);
         ImageView ivUserPhoto = (ImageView)header.findViewById(R.id.nav_user_photo);
         navigationView.setNavigationItemSelectedListener(this);
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-        if (user != null) {
+        mDatabase.child("users").child(firebaseUser.getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.getValue(User.class).isAdministrador()){
+                    navigationView.getMenu().getItem(2).setVisible(true);
+                }else{
+                    navigationView.getMenu().getItem(2).setVisible(false);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+        if (firebaseUser != null) {
             String userName = "";
             String userPhoto = "";
-            List<UserInfo> providers = (List<UserInfo>) user.getProviderData();
+            List<UserInfo> providers = (List<UserInfo>) firebaseUser.getProviderData();
             for (UserInfo userInfo : providers) {
                 if (userInfo.getProviderId().equals("google.com")) {
                     userName = userInfo.getDisplayName();
-                    if(userInfo.getPhotoUrl()!=null){
-                        userPhoto = userInfo.getPhotoUrl().toString();
+                    if(userInfo.getPhotoUrl()!=null && !userInfo.getPhotoUrl().toString().equals("")){
+                        Picasso.with(this)
+                                .load(userInfo.getPhotoUrl().toString())
+                                .transform(new PicassoRoundedTransformation())
+                                .error(R.drawable.ic_account_box)
+                                .into(ivUserPhoto);
+                    }else{
+                        ivUserPhoto.setImageDrawable(getResources().getDrawable(R.drawable.ic_account_box));
                     }
                 }
             }
-                tvUserEmail.setText(user.getEmail());
+                tvUserEmail.setText(firebaseUser.getEmail());
             tvUserName.setText(userName);
-            Picasso.with(this).load(userPhoto).transform(new PicassoRoundedTransformation()).into(ivUserPhoto);
+
+
+
+            createUser(firebaseUser.getEmail());
         }
 
 
+    }
+
+    private void createUser(String email){
+        User user = new User(email);
+        mDatabase.child("users").child(getUserKey()).child("email").setValue(user.getEmail());
     }
 
     public void switchToFragment(Fragment fragment, String title, boolean backStack) {
@@ -237,7 +260,7 @@ public class MainActivity extends AppCompatActivity
 
                 myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
+                    public void onDataChange(final DataSnapshot dataSnapshot) {
                         Map<String, Object> updateActivo = new HashMap();
                         for (DataSnapshot snapshot: dataSnapshot.getChildren()){
                             updateActivo.put(snapshot.getKey()+"/activo",false);
@@ -251,8 +274,18 @@ public class MainActivity extends AppCompatActivity
                                     for (char caracter: caracteres) {
                                         key = key.replace( caracter,':');
                                     }
-                                    Map<String, Object> asd = oferta.toMap();
-                                    myRef.child(key).updateChildren(asd);
+                                    for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren())
+                                    {
+                                        if(key.equals(dataSnapshot1.getKey())){
+                                            oferta.setNuevo(false);
+                                            oferta.setReservas((Long) dataSnapshot1.child("reservas").getValue());
+                                            break;
+                                        }
+                                        oferta.setNuevo(true);
+                                        oferta.setReservas(0);
+                                    }
+                                    Map<String, Object> OfertaMap = oferta.toMap();
+                                    myRef.child(key).updateChildren(OfertaMap);
                                 }
                             }
                         });

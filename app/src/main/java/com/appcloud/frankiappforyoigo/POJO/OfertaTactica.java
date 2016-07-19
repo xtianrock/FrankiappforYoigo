@@ -27,6 +27,8 @@ public class OfertaTactica {
     private String pagoFinalCinco;
     private String pagoFinalSinFin;
     private boolean activo;
+    private boolean nuevo;
+    private long reservas;
 
     public OfertaTactica() {
     }
@@ -167,6 +169,22 @@ public class OfertaTactica {
         this.activo = activo;
     }
 
+    public boolean isNuevo() {
+        return nuevo;
+    }
+
+    public void setNuevo(boolean nuevo) {
+        this.nuevo = nuevo;
+    }
+
+    public long getReservas() {
+        return reservas;
+    }
+
+    public void setReservas(long reservas) {
+        this.reservas = reservas;
+    }
+
     @Exclude
     public Map<String, Object> toMap() {
         HashMap<String, Object> result = new HashMap<>();
@@ -186,6 +204,8 @@ public class OfertaTactica {
         result.put("pagoFinalCinco", pagoFinalCinco);
         result.put("pagoFinalSinFin", pagoFinalSinFin);
         result.put("activo", activo);
+        result.put("nuevo", nuevo);
+        result.put("reservas",reservas);
 
         return result;      
     }

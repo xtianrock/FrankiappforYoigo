@@ -33,6 +33,7 @@
             android:name=".Activities.ReservaActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize"
             ></activity>
     </application>
 

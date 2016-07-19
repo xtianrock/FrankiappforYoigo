@@ -3,11 +3,10 @@ package com.appcloud.frankiappforyoigo.Activities;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
@@ -19,7 +18,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.appcloud.frankiappforyoigo.Configuracion;
-import com.appcloud.frankiappforyoigo.Fragments.ReservaDialogFragment;
 import com.appcloud.frankiappforyoigo.POJO.OfertaTactica;
 import com.appcloud.frankiappforyoigo.POJO.Reserva;
 import com.appcloud.frankiappforyoigo.POJO.Tarifa;
@@ -203,13 +201,11 @@ public class ReservaActivity extends BaseActivity {
             TextView tvCuotaTotal =(TextView)findViewById(R.id.tv_cuota_total);
             TextView tvPagoFinal =(TextView)findViewById(R.id.tv_pago_final);
             int cuotaTarifa = Integer.parseInt(tarifa.getCuota());
-            Drawable background = null;
             switch (codTarifa){
                 case Configuracion.TARIFA_CERO:
                     cuotaTerminal = Integer.parseInt(Commons.tratarFinanciacion(ofertaTactica.getFinanciacionCero()));
                     tvPagoInicial.setText(Commons.tratarPrecio(ofertaTactica.getPagoInicialCero()));
                     tvPagoFinal.setText(Commons.tratarPrecio(ofertaTactica.getPagoFinalCero()));
-                    background=getResources().getDrawable(R.drawable.background_cero);
                     if(pagoUnico){
                         tvPagoInicial.setText(Commons.tratarPrecio(ofertaTactica.getPagoUnicoCero()));
                         setPagoUnico();
@@ -219,7 +215,6 @@ public class ReservaActivity extends BaseActivity {
                     cuotaTerminal = Integer.parseInt(Commons.tratarFinanciacion(ofertaTactica.getFinanciacionCinco()));
                     tvPagoInicial.setText(Commons.tratarPrecio(ofertaTactica.getPagoInicialCinco()));
                     tvPagoFinal.setText(Commons.tratarPrecio(ofertaTactica.getPagoFinalCinco()));
-                    background=getResources().getDrawable(R.drawable.background_cinco);
                     if(pagoUnico){
                         tvPagoInicial.setText(Commons.tratarPrecio(ofertaTactica.getPagoUnicoCinco()));
                         setPagoUnico();
@@ -229,7 +224,6 @@ public class ReservaActivity extends BaseActivity {
                     cuotaTerminal = Integer.parseInt(Commons.tratarFinanciacion(ofertaTactica.getFinanciacionSinFin()));
                     tvPagoInicial.setText(Commons.tratarPrecio(ofertaTactica.getPagoInicialSinFin()));
                     tvPagoFinal.setText(Commons.tratarPrecio(ofertaTactica.getPagoFinalSinFin()));
-                    background=getResources().getDrawable(R.drawable.background_sinfin);
                     if(pagoUnico){
                         tvPagoInicial.setText(Commons.tratarPrecio(ofertaTactica.getPagoUnicoSinFin()));
                         setPagoUnico();
@@ -238,20 +232,15 @@ public class ReservaActivity extends BaseActivity {
                 case Configuracion.TARIFA_UNO:
                     tvPagoInicial.setText(Commons.tratarPrecio(ofertaTactica.getPagoUnicoPrepago()));
                     setPagoUnico();
-                    background=getResources().getDrawable(R.drawable.background_cero);
                     break;
                 case Configuracion.TARIFA_650:
                     tvPagoInicial.setText(Commons.tratarPrecio(ofertaTactica.getPagoUnicoPrepago()));
                     setPagoUnico();
-                    background=getResources().getDrawable(R.drawable.background_cinco);
                     break;
             }
             tvCuotaTotal.setText(String.valueOf(cuotaTarifa+cuotaTerminal));
             tvCuotaTerminal.setText(String.valueOf(cuotaTerminal));
-            findViewById(R.id.ln_pago_inicial).setBackground(background);
-            findViewById(R.id.ln_cuota_total).setBackground(background);
-            findViewById(R.id.ln_pago_final).setBackground(background);
-            findViewById(R.id.bt_reserva).setBackground(background);
+
         }
     }
 
@@ -301,14 +290,6 @@ public class ReservaActivity extends BaseActivity {
         lnDetalleTarifa.setVisibility(View.GONE);
     }
 
-    @Override
-    protected void onPostResume() {
-        super.onPostResume();
-        if(tarifa!=null && ofertaTactica!=null){
-          prepararTotal();
-        }
-    }
-
     private void reservar(){
 
         final AlertDialog.Builder builder= new AlertDialog.Builder(context);
@@ -335,31 +316,46 @@ public class ReservaActivity extends BaseActivity {
         tvReservar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatabaseReference reservas = FirebaseSingleton.getDatabase().getReference().child("reservas");
-                String key = reservas.push().getKey();
-                Reserva reserva = new Reserva();
-                List<UserInfo> providers = (List<UserInfo>) getUser().getProviderData();
-                for (UserInfo userInfo : providers) {
-                    if (userInfo.getProviderId().equals("google.com")) {
-                        reserva.setNombre(userInfo.getDisplayName());
-                        if(userInfo.getPhotoUrl()!=null){
-                            reserva.setUrlFoto(userInfo.getPhotoUrl().toString());
+                if(etTelefono.getText().length()<9){
+                    etTelefono.setError("introduce un nº de telefono valido");
+                }else{
+                    DatabaseReference reservas = FirebaseSingleton.getDatabase().getReference().child("reservas");
+                    String key = reservas.push().getKey();
+                    Reserva reserva = new Reserva();
+                    List<UserInfo> providers = (List<UserInfo>) getUser().getProviderData();
+                    for (UserInfo userInfo : providers) {
+                        if (userInfo.getProviderId().equals("google.com")) {
+                            reserva.setNombre(userInfo.getDisplayName());
+                            if(userInfo.getPhotoUrl()!=null){
+                                reserva.setUrlFoto(userInfo.getPhotoUrl().toString());
+                            }
                         }
                     }
+                    reserva.setEmail(getUser().getEmail());
+                    reserva.setTelefono(etTelefono.getText().toString());
+                    reserva.setFechaReserva(new Date().getTime());
+                    reserva.setTerminal(ofertaTactica.getTerminal());
+                    reserva.setKeyTerminal(keyTerminal);
+                    reserva.setCodTarifa(codTarifa);
+                    reserva.setPagoUnico(pagoUnico);
+                    reserva.setTarifa(tarifa.getTarifa());
+                    mDatabase.child("reservas").child(key).setValue(reserva);
+                    alertDialog.dismiss();
+                    confirmationDialog();
                 }
-                reserva.setEmail(getUser().getEmail());
-                reserva.setTelefono(etTelefono.getText().toString());
-                reserva.setFechaReserva(new Date().getTime());
-                reserva.setTerminal(ofertaTactica.getTerminal());
-                reserva.setKeyTerminal(keyTerminal);
-                reserva.setCodTarifa(codTarifa);
-                reserva.setPagoUnico(pagoUnico);
-                reserva.setTarifa(tarifa.getTarifa());
-                mDatabase.child("reservas").child(key).setValue(reserva);
-                alertDialog.dismiss();
             }
         });
         alertDialog.setView(rootView);
+        alertDialog.show();
+    }
+
+    private void confirmationDialog(){
+
+        final AlertDialog.Builder builder= new AlertDialog.Builder(context);
+        View rootView = getLayoutInflater().inflate(R.layout.confirmation_dialog, null);
+        builder.setView(rootView);
+        builder.setPositiveButton("Aceptar",null);
+        final AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }
 }
