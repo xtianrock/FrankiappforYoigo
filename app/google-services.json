@@ -15,11 +15,19 @@
       },
       "oauth_client": [
         {
+          "client_id": "557537829634-c8f62oeqifg94gnfv0dhbkvf1jjoq9no.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.appcloud.frankiappforyoigo",
+            "certificate_hash": "f29adae3d6ba8295843ef29e92bb60e7f735fa0c"
+          }
+        },
+        {
           "client_id": "557537829634-6lbjnjukjo6bei0sssj3ie55c4ggqdn9.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.appcloud.frankiappforyoigo",
-            "certificate_hash": "350E5397442D7827086EB74A5E91D72C76D0CC05"
+            "certificate_hash": "350e5397442d7827086eb74a5e91d72c76d0cc05"
           }
         },
         {
