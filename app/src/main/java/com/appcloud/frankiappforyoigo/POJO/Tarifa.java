@@ -7,8 +7,14 @@ public class Tarifa {
 
     private String tarifa;
     private String cuota;
-    private String datos;
+    private String cuota_promo;
+    private String duracion_promo;
+    private double datos;
+    private double datos_extra;
+    private String duracion_datos_extra;
     private boolean ilimitadas;
+    private String velocidad_fibra;
+    private String velocidad_adsl;
     private String precio_minuto;
     private String minutos_gratis;
     private String unidad_datos;
@@ -32,11 +38,11 @@ public class Tarifa {
         this.cuota = cuota;
     }
 
-    public String getDatos() {
+    public double getDatos() {
         return datos;
     }
 
-    public void setDatos(String datos) {
+    public void setDatos(double datos) {
         this.datos = datos;
     }
 
@@ -71,4 +77,53 @@ public class Tarifa {
     public void setUnidad_datos(String unidad_datos) {
         this.unidad_datos = unidad_datos;
     }
+
+    public String getCuota_promo() {
+        return cuota_promo;
+    }
+
+    public void setCuota_promo(String cuota_promo) {
+        this.cuota_promo = cuota_promo;
+    }
+
+    public String getDuracion_promo() {
+        return duracion_promo;
+    }
+
+    public void setDuracion_promo(String duracion_promo) {
+        this.duracion_promo = duracion_promo;
+    }
+
+    public double getDatos_extra() {
+        return datos_extra;
+    }
+
+    public void setDatos_extra(double datos_extra) {
+        this.datos_extra = datos_extra;
+    }
+
+    public String getDuracion_datos_extra() {
+        return duracion_datos_extra;
+    }
+
+    public void setDuracion_datos_extra(String duracion_datos_extra) {
+        this.duracion_datos_extra = duracion_datos_extra;
+    }
+
+    public String getVelocidad_fibra() {
+        return velocidad_fibra;
+    }
+
+    public void setVelocidad_fibra(String velocidad_fibra) {
+        this.velocidad_fibra = velocidad_fibra;
+    }
+
+    public String getVelocidad_adsl() {
+        return velocidad_adsl;
+    }
+
+    public void setVelocidad_adsl(String velocidad_adsl) {
+        this.velocidad_adsl = velocidad_adsl;
+    }
 }
+

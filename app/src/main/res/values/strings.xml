@@ -7,9 +7,15 @@
     <string name="action_settings">Settings</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="tarifa_cero">LA DEL CERO 1,2 GB</string>
+    <string name="fibra_300">FIJO + FIBRA 300Mb SIMETRICA</string>
+    <string name="fibra_50">FIJO + FIBRA 50Mb o ADSL 20Mb</string>
+    <string name="tarifa_cero">LA DEL CERO 1,5 GB</string>
     <string name="tarifa_cinco">LA DEL CERO 5 GB</string>
+    <string name="tarifa_infinita">LA INFINITA 5 GB</string>
+    <string name="combinada_naranja">COMBINADA NARANJA</string>
+    <string name="combinada_verde">COMBINADA VERDE</string>
+    <string name="combinada_morada">COMBINADA MORADA</string>
+    <string name="combinada_azul">COMBINADA AZUL</string>
     <string name="tarifa_sinfin">LA SINFÍN 20 GB</string>
     <string name="tarifa_uno">LA DEL UNO 1 GB</string>
     <string name="tarifa_650">LA DEL UNO 650 MB</string>

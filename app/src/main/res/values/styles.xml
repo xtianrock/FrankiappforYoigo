@@ -31,6 +31,12 @@
         <item name="colorAccent">@color/color_cinco_accent</item>
         <item name="android:textColor">@color/color_cinco</item>
     </style>
+    <style name="AppTheme.NoActionBar.infinita">
+        <item name="colorPrimary">@color/color_infinita</item>
+        <item name="colorPrimaryDark">@color/color_infinita_dark</item>
+        <item name="colorAccent">@color/color_sinfin_accent</item>
+        <item name="android:textColor">@color/color_infinita</item>
+    </style>
     <style name="AppTheme.NoActionBar.sinfin">
         <item name="colorPrimary">@color/color_sinfin</item>
         <item name="colorPrimaryDark">@color/color_sinfin_dark</item>

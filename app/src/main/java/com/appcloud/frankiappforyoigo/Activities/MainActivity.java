@@ -69,7 +69,7 @@ public class MainActivity extends BaseActivity
 
         prepareNavigation();
 
-        switchToFragment(new HomeFragment(), "Yoigo Holea Hueva", false);
+        switchToFragment(new HomeFragment(), "Yoigo Holea Huelva", false);
     }
 
     @Override
@@ -232,7 +232,7 @@ public class MainActivity extends BaseActivity
 
 
 
-    private class CargarDatosAsyncTask extends AsyncTask<String, Void, ArrayList<OfertaTactica>> {
+   /* private class CargarDatosAsyncTask extends AsyncTask<String, Void, ArrayList<OfertaTactica>> {
         ProgressDialog dialog = new ProgressDialog(context);
         public CargarDatosAsyncTask()
         {}
@@ -270,7 +270,7 @@ public class MainActivity extends BaseActivity
                             public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                                 char[] caracteres = new char[]{'$','-','_','.','+','!','*','(',',',')','\'',' ','/'};
                                 for (OfertaTactica oferta:ofertas) {
-                                    String key = oferta.getTerminal();
+                                    String key = dataSnapshot.getKey();
                                     for (char caracter: caracteres) {
                                         key = key.replace( caracter,':');
                                     }
@@ -301,7 +301,7 @@ public class MainActivity extends BaseActivity
             if(dialog.isShowing())
                 dialog.dismiss();
         }
-    }
+    }*/
 
 
 }

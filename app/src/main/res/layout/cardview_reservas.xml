@@ -6,8 +6,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         card_view:cardBackgroundColor="@android:color/holo_orange_dark"
-        card_view:cardCornerRadius="2dp"
-        android:layout_marginTop="10dp"
+        card_view:cardCornerRadius="1dp"
+        android:layout_marginTop="8dp"
         android:elevation="5dp">
 
     <LinearLayout
@@ -28,24 +28,22 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="8dp"
             android:orientation="vertical">
-            <TextView
-            android:id="@+id/tv_reserva_nombre"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
+            <com.appcloud.frankiappforyoigo.AutoResizeTextView
+                android:id="@+id/tv_reserva_nombre"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
                 android:layout_weight="1"
-            android:layout_centerVertical="true"
-            android:textColor="@android:color/white"
-            android:layout_toRightOf="@+id/iv_terminal_foto"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="nombre usuario"/>
-            <TextView
+                android:maxLines="1"
+                android:textColor="@android:color/white"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="nombre usuario"/>
+            <com.appcloud.frankiappforyoigo.AutoResizeTextView
                 android:id="@+id/tv_reserva_email"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:layout_centerVertical="true"
+                android:maxLines="1"
                 android:textColor="@android:color/white"
-                android:layout_toRightOf="@+id/iv_terminal_foto"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Email"/>
             <LinearLayout
@@ -53,25 +51,23 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
-                <TextView
+                <com.appcloud.frankiappforyoigo.AutoResizeTextView
                     android:id="@+id/tv_reserva_telefono"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:layout_centerVertical="true"
+                    android:maxLines="1"
                     android:textColor="@android:color/white"
-                    android:layout_toRightOf="@+id/iv_terminal_foto"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="654685107"
                     android:textSize="15sp"/>
-                <TextView
+                <com.appcloud.frankiappforyoigo.AutoResizeTextView
                     android:id="@+id/tv_reserva_fecha"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:layout_centerVertical="true"
+                    android:maxLines="1"
                     android:textColor="@android:color/white"
-                    android:layout_toRightOf="@+id/iv_terminal_foto"
                     android:layout_marginLeft="16dp"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="20/08/2016"

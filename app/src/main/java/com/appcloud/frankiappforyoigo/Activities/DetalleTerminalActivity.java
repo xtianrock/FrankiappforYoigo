@@ -9,7 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
 
-import com.appcloud.frankiappforyoigo.Configuracion;
+import com.appcloud.frankiappforyoigo.AutoResizeTextView;
+import com.appcloud.frankiappforyoigo.Config;
 import com.appcloud.frankiappforyoigo.POJO.OfertaTactica;
 import com.appcloud.frankiappforyoigo.R;
 import com.appcloud.frankiappforyoigo.Utils.FirebaseSingleton;
@@ -25,30 +26,45 @@ public class DetalleTerminalActivity extends AppCompatActivity {
     private String keyTerminal;
     private Context context = this;
     private ImageView ivFotoTerminal;
-    private CollapsingToolbarLayout collapsingToolbarLayout;
+    private AutoResizeTextView tvPantalla, tvProcesador, tvRam, tvRom, tvTrasera, tvDelantera,tvBateria;
     private OfertaTactica ofertaTactica;
     private ViewPager viewPager;
-    private TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_terminal);
-        keyTerminal = getIntent().getStringExtra(Configuracion.KEY_TERMINAL);
-
-        collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+        DatabaseReference databaseReference = FirebaseSingleton.getDatabase().getReference();
+        keyTerminal = getIntent().getStringExtra(Config.KEY_TERMINAL);
         ivFotoTerminal = (ImageView) findViewById(R.id.iv_terminal_foto);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        tvPantalla = (AutoResizeTextView)findViewById(R.id.tv_espec_pantalla);
+        tvProcesador = (AutoResizeTextView)findViewById(R.id.tv_espec_procesador);
+        tvRam = (AutoResizeTextView)findViewById(R.id.tv_espec_ram);
+        tvRom = (AutoResizeTextView)findViewById(R.id.tv_spec_rom);
+        tvTrasera = (AutoResizeTextView)findViewById(R.id.tv_spec_trasera);
+        tvDelantera = (AutoResizeTextView)findViewById(R.id.tv_spec_delantera);
+        tvBateria = (AutoResizeTextView)findViewById(R.id.tv_espec_bateria);
         setSupportActionBar(toolbar);
 
         if (keyTerminal != null) {
-            DatabaseReference databaseReference = FirebaseSingleton.getDatabase().getReference();
             databaseReference.child("ofertas_tacticas").child(keyTerminal).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     ofertaTactica = dataSnapshot.getValue(OfertaTactica.class);
-                    Picasso.with(context).load(ofertaTactica.getFoto()).into(ivFotoTerminal);
-                    getSupportActionBar().setTitle(ofertaTactica.getTerminal());
+                    Picasso.with(context)
+                            .load(ofertaTactica.getFotoUrl())
+                            .placeholder(R.drawable.phone_mockup)
+                            .error(R.drawable.phone_mockup).
+                            into(ivFotoTerminal);
+                    getSupportActionBar().setTitle(keyTerminal);
+                    tvPantalla.setText(ofertaTactica.getPantalla()+"''");
+                    tvProcesador.setText(ofertaTactica.getProcesador());
+                    tvRom.setText(ofertaTactica.getRom());
+                    tvRam.setText(ofertaTactica.getRam());
+                    tvTrasera.setText(ofertaTactica.getCamaraTrasera());
+                    tvDelantera.setText(ofertaTactica.getCamaraDelantera());
+                    tvBateria.setText(ofertaTactica.getBateria());
 
                 }
 
@@ -60,7 +76,7 @@ public class DetalleTerminalActivity extends AppCompatActivity {
         }
 
         viewPager = (ViewPager) findViewById(R.id.view_pager);
-        tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("Tarifas móvil"));
         tabLayout.addTab(tabLayout.newTab().setText("Tarifas combinadas"));
         ViewPagerTarifasAdapter pagerAdapter = new ViewPagerTarifasAdapter(getSupportFragmentManager(),keyTerminal);

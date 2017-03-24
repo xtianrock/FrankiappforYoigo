@@ -17,7 +17,7 @@ public class Reserva {
     private String terminal;
     private String keyTerminal;
     private String tarifa;
-    private int codTarifa;
+    private String keyTarifa;
     private boolean pagoUnico;
 
     public Reserva() {
@@ -87,12 +87,12 @@ public class Reserva {
         this.keyTerminal = keyTerminal;
     }
 
-    public int getCodTarifa() {
-        return codTarifa;
+    public String getKeyTarifa() {
+        return keyTarifa;
     }
 
-    public void setCodTarifa(int codTarifa) {
-        this.codTarifa = codTarifa;
+    public void setKeyTarifa(String keyTarifa) {
+        this.keyTarifa = keyTarifa;
     }
 
     public boolean isPagoUnico() {

@@ -5,829 +5,1868 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/scroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/margin_tarifa"
-            android:orientation="vertical">
-            <TextView
+            android:animateLayoutChanges="true"
+            android:orientation="vertical"
+            android:padding="@dimen/margin_tarifa">
+
+            <com.appcloud.frankiappforyoigo.AutoResizeTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:layout_marginBottom="16dp"
+                android:gravity="center"
+                android:maxLines="1"
                 android:text="Aqui se pondran las ofertas de solo movil"
-                android:textSize="15sp"/>
+                android:textSize="15sp" />
+
             <LinearLayout
-                android:visibility="visible"
                 android:id="@+id/ln_cero"
-                android:animateLayoutChanges="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:animateLayoutChanges="true"
+                android:orientation="vertical"
+                android:visibility="visible">
+
                 <LinearLayout
                     android:id="@+id/ln_color_cero"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:background="@color/color_cero">
+                    android:background="@color/color_cero"
+                    android:orientation="vertical">
+
                     <TextView
                         android:id="@+id/tv_tarifa_cero"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
                         android:text="@string/tarifa_cero"
                         android:textColor="@android:color/white"
-                        android:textSize="20sp"
-                        android:layout_margin="5dp"
-                        android:layout_gravity="center"/>
+                        android:textSize="20sp" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
+
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
                             android:layout_weight="1"
-                            android:orientation="vertical"
-                            android:layout_marginLeft="20dp">
+                            android:orientation="vertical">
+
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:orientation="horizontal"
-                                android:layout_gravity="center_horizontal">
+                                android:layout_gravity="center_horizontal"
+                                android:orientation="horizontal">
+
                                 <TextView
                                     android:id="@+id/tv_pago_inicial_cero"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textSize="45sp"
+                                    android:layout_gravity="bottom"
                                     android:textColor="@android:color/white"
-                                    android:layout_gravity="bottom"/>
+                                    android:textSize="45sp" />
+
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="€"
-                                    android:textSize="25sp"
-                                    android:textColor="@android:color/white"
-                                    android:layout_gravity="bottom"
                                     android:layout_alignBaseline="@+id/tv_pago_inicial"
-                                    android:layout_toRightOf="@+id/tv_pago_inicial"/>
+                                    android:layout_gravity="bottom"
+                                    android:layout_toRightOf="@+id/tv_pago_inicial"
+                                    android:text="€"
+                                    android:textColor="@android:color/white"
+                                    android:textSize="25sp" />
                             </LinearLayout>
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="PAGO INICIAL"
-                                android:textSize="15sp"
-                                android:textColor="@android:color/white"
                                 android:layout_gravity="center_horizontal"
-                                />
+                                android:text="PAGO INICIAL"
+                                android:textColor="@android:color/white"
+                                android:textSize="15sp" />
                         </LinearLayout>
+
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
                             android:layout_weight="1"
-                            android:orientation="vertical"
-                            android:layout_marginLeft="20dp">
+                            android:orientation="vertical">
+
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:orientation="horizontal"
-                                android:layout_gravity="center_horizontal">
+                                android:layout_gravity="center_horizontal"
+                                android:orientation="horizontal">
+
                                 <TextView
                                     android:id="@+id/tv_cuota_mensual_cero"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textSize="45sp"
+                                    android:layout_gravity="bottom"
                                     android:textColor="@android:color/white"
-                                    android:layout_gravity="bottom"/>
-                                <TextView
+                                    android:textSize="45sp" />
+
+                                <com.appcloud.frankiappforyoigo.AutoResizeTextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:layout_gravity="bottom"
+                                    android:maxLines="1"
                                     android:text="€/mes"
-                                    android:textSize="25sp"
                                     android:textColor="@android:color/white"
-                                    android:layout_gravity="bottom"/>
+                                    android:textSize="25sp" />
                             </LinearLayout>
 
-                            <TextView
+                            <com.appcloud.frankiappforyoigo.AutoResizeTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="left"
+                                android:maxLines="1"
                                 android:text="DURANTE 24 MESES"
-                                android:textSize="15sp"
                                 android:textColor="@android:color/white"
-                                android:layout_gravity="center_horizontal"/>
+                                android:textSize="15sp" />
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="8dp"
                     android:background="@drawable/border_cero"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:padding="8dp">
+
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:layout_marginLeft="15dp"
+                        android:layout_weight="1"
                         android:orientation="vertical">
-                        <TextView
+
+                        <com.appcloud.frankiappforyoigo.AutoResizeTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:maxLines="1"
                             android:text="DESPUÉS PAGO FINAL:"
-                            android:textSize="12sp"
                             android:textColor="@color/color_cero"
-                            android:layout_gravity="center"/>
+                            android:textSize="12sp" />
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:orientation="horizontal"
-                            android:layout_gravity="center_horizontal">
+                            android:layout_gravity="center_horizontal"
+                            android:orientation="horizontal">
+
                             <TextView
                                 android:id="@+id/tv_pago_final_cero"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="40sp"
+                                android:layout_gravity="bottom"
                                 android:textColor="@color/color_cero"
-                                android:layout_gravity="bottom"/>
+                                android:textSize="40sp" />
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="bottom"
                                 android:text="€"
-                                android:textSize="25sp"
                                 android:textColor="@color/color_cero"
-                                android:layout_gravity="bottom"                          />
+                                android:textSize="25sp" />
                         </LinearLayout>
 
-                        <TextView
+                        <com.appcloud.frankiappforyoigo.AutoResizeTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Si te quedas el movil"
-                            android:textSize="15sp"
-                            android:textColor="@color/color_cero"
                             android:layout_gravity="center_horizontal"
-                            />
+                            android:maxLines="1"
+                            android:text="Si te quedas el movil"
+                            android:textColor="@color/color_cero"
+                            android:textSize="15sp" />
                     </LinearLayout>
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="o"
-                        android:textSize="25sp"
+                        android:layout_gravity="center"
                         android:layout_marginLeft="5dp"
+                        android:text="o"
                         android:textColor="@color/color_cero"
-                        android:layout_gravity="center"/>
+                        android:textSize="25sp" />
+
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:orientation="vertical">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="12sp"
-                            android:textColor="@color/color_cero"
-                            android:layout_gravity="center"/>
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal"
-                            android:layout_gravity="center_horizontal">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="40sp"
-                                android:text="0"
-                                android:textColor="@color/color_cero"
-                                android:layout_gravity="bottom"/>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="€"
-                                android:textSize="25sp"
-                                android:textColor="@color/color_cero"
-                                android:layout_gravity="bottom"/>
-                        </LinearLayout>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Si nos lo devuelves"
-                            android:textSize="15sp"
+                            android:layout_gravity="center"
                             android:textColor="@color/color_cero"
-                            android:layout_gravity="center_horizontal"/>
+                            android:textSize="12sp" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_horizontal"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="bottom"
+                                android:text="0"
+                                android:textColor="@color/color_cero"
+                                android:textSize="40sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="bottom"
+                                android:text="€"
+                                android:textColor="@color/color_cero"
+                                android:textSize="25sp" />
+                        </LinearLayout>
+
+                        <com.appcloud.frankiappforyoigo.AutoResizeTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:maxLines="1"
+                            android:text="Si nos lo devuelves"
+                            android:textColor="@color/color_cero"
+                            android:textSize="15sp" />
                     </LinearLayout>
 
                 </LinearLayout>
             </LinearLayout>
+            <RelativeLayout
+                android:id="@+id/rl_cero"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:animateLayoutChanges="true"
+                android:background="@drawable/border_cero"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tv_tarifa_cero2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:gravity="center_horizontal"
+                    android:text="@string/tarifa_cero"
+                    android:textColor="@color/color_cero"
+                    android:textSize="20sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:id="@+id/ln_pago_inicial_cero"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center_horizontal"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/tv_pago_inicial_cero2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="bottom"
+                                    android:textColor="@color/color_cero"
+                                    android:textSize="45sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignBaseline="@+id/tv_pago_inicial"
+                                    android:layout_gravity="bottom"
+                                    android:layout_toRightOf="@+id/tv_pago_inicial"
+                                    android:text="€"
+                                    android:textColor="@color/color_cero"
+                                    android:textSize="25sp" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:text="PAGO INICIAL"
+                                android:textColor="@color/color_cero"
+                                android:textSize="15sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center_horizontal"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/tv_cuota_mensual_cero2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="bottom"
+                                    android:textColor="@color/color_cero"
+                                    android:textSize="45sp" />
+
+                                <com.appcloud.frankiappforyoigo.AutoResizeTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="bottom"
+                                    android:maxLines="1"
+                                    android:text="€/mes"
+                                    android:textColor="@color/color_cero"
+                                    android:textSize="25sp" />
+                            </LinearLayout>
+
+                            <com.appcloud.frankiappforyoigo.AutoResizeTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="left"
+                                android:maxLines="1"
+                                android:text="DURANTE 24 MESES"
+                                android:textColor="@color/color_cero"
+                                android:textSize="15sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ln_gratis_cero"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center_horizontal"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="bottom"
+                                    android:text="0"
+                                    android:textColor="@color/color_cero"
+                                    android:textSize="100sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignBaseline="@+id/tv_pago_inicial"
+                                    android:layout_gravity="bottom"
+                                    android:layout_toRightOf="@+id/tv_pago_inicial"
+                                    android:text="€"
+                                    android:textColor="@color/color_cero"
+                                    android:textSize="80sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
             <LinearLayout
-                android:visibility="visible"
                 android:id="@+id/ln_cinco"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="visible">
+
                 <LinearLayout
                     android:id="@+id/ln_color_cinco"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:layout_marginTop="@dimen/margin_tarifa"
-                    android:background="@color/color_cinco">
+                    android:background="@color/color_cinco"
+                    android:orientation="vertical">
+
                     <TextView
                         android:id="@+id/tv_tarifa_cinco"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/tarifa_cinco"
-                        android:textSize="20sp"
-                        android:textColor="@android:color/white"
+                        android:layout_gravity="center"
                         android:layout_margin="5dp"
-                        android:layout_gravity="center"/>
+                        android:text="@string/tarifa_cinco"
+                        android:textColor="@android:color/white"
+                        android:textSize="20sp" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
+
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
                             android:layout_weight="1"
-                            android:orientation="vertical"
-                            android:layout_marginLeft="20dp">
+                            android:orientation="vertical">
+
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:orientation="horizontal"
-                                android:layout_gravity="center_horizontal">
+                                android:layout_gravity="center_horizontal"
+                                android:orientation="horizontal">
+
                                 <TextView
                                     android:id="@+id/tv_pago_inicial_cinco"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textSize="45sp"
+                                    android:layout_gravity="bottom"
                                     android:textColor="@android:color/white"
-                                    android:layout_gravity="bottom"/>
+                                    android:textSize="45sp" />
+
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="€"
-                                    android:textSize="25sp"
-                                    android:textColor="@android:color/white"
-                                    android:layout_gravity="bottom"
                                     android:layout_alignBaseline="@+id/tv_pago_inicial"
-                                    android:layout_toRightOf="@+id/tv_pago_inicial"/>
+                                    android:layout_gravity="bottom"
+                                    android:layout_toRightOf="@+id/tv_pago_inicial"
+                                    android:text="€"
+                                    android:textColor="@android:color/white"
+                                    android:textSize="25sp" />
                             </LinearLayout>
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="PAGO INICIAL"
-                                android:textSize="15sp"
-                                android:textColor="@android:color/white"
                                 android:layout_gravity="center_horizontal"
-                                />
+                                android:text="PAGO INICIAL"
+                                android:textColor="@android:color/white"
+                                android:textSize="15sp" />
                         </LinearLayout>
+
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
                             android:layout_weight="1"
-                            android:orientation="vertical"
-                            android:layout_marginLeft="20dp">
+                            android:orientation="vertical">
+
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:orientation="horizontal"
-                                android:layout_gravity="center_horizontal">
+                                android:layout_gravity="center_horizontal"
+                                android:orientation="horizontal">
+
                                 <TextView
                                     android:id="@+id/tv_cuota_mensual_cinco"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textSize="45sp"
+                                    android:layout_gravity="bottom"
                                     android:textColor="@android:color/white"
-                                    android:layout_gravity="bottom"/>
-                                <TextView
+                                    android:textSize="45sp" />
+
+                                <com.appcloud.frankiappforyoigo.AutoResizeTextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:layout_gravity="bottom"
+                                    android:maxLines="1"
                                     android:text="€/mes"
-                                    android:textSize="25sp"
                                     android:textColor="@android:color/white"
-                                    android:layout_gravity="bottom"/>
+                                    android:textSize="25sp" />
                             </LinearLayout>
 
-                            <TextView
+                            <com.appcloud.frankiappforyoigo.AutoResizeTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="left"
+                                android:maxLines="1"
                                 android:text="DURANTE 24 MESES"
-                                android:textSize="15sp"
                                 android:textColor="@android:color/white"
-                                android:layout_gravity="center_horizontal"/>
+                                android:textSize="15sp" />
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="8dp"
                     android:background="@drawable/border_cinco"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:padding="8dp">
+
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:layout_marginLeft="15dp"
+                        android:layout_weight="1"
                         android:orientation="vertical">
-                        <TextView
+
+                        <com.appcloud.frankiappforyoigo.AutoResizeTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:maxLines="1"
                             android:text="DESPUÉS PAGO FINAL:"
-                            android:textSize="12sp"
                             android:textColor="@color/color_cinco"
-                            android:layout_gravity="center"/>
+                            android:textSize="12sp" />
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:orientation="horizontal"
-                            android:layout_gravity="center_horizontal">
+                            android:layout_gravity="center_horizontal"
+                            android:orientation="horizontal">
+
                             <TextView
                                 android:id="@+id/tv_pago_final_cinco"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="40sp"
+                                android:layout_gravity="bottom"
                                 android:textColor="@color/color_cinco"
-                                android:layout_gravity="bottom"/>
+                                android:textSize="40sp" />
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="bottom"
                                 android:text="€"
-                                android:textSize="25sp"
                                 android:textColor="@color/color_cinco"
-                                android:layout_gravity="bottom"                          />
+                                android:textSize="25sp" />
                         </LinearLayout>
 
-                        <TextView
+                        <com.appcloud.frankiappforyoigo.AutoResizeTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Si te quedas el movil"
-                            android:textSize="15sp"
-                            android:textColor="@color/color_cinco"
                             android:layout_gravity="center_horizontal"
-                            />
+                            android:maxLines="1"
+                            android:text="Si te quedas el movil"
+                            android:textColor="@color/color_cinco"
+                            android:textSize="15sp" />
                     </LinearLayout>
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="o"
-                        android:textSize="25sp"
+                        android:layout_gravity="center"
                         android:layout_marginLeft="5dp"
+                        android:text="o"
                         android:textColor="@color/color_cinco"
-                        android:layout_gravity="center"/>
+                        android:textSize="25sp" />
+
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:orientation="vertical">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="12sp"
-                            android:textColor="@color/color_cinco"
-                            android:layout_gravity="center"/>
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal"
-                            android:layout_gravity="center_horizontal">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="40sp"
-                                android:text="0"
-                                android:textColor="@color/color_cinco"
-                                android:layout_gravity="bottom"/>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="€"
-                                android:textSize="25sp"
-                                android:textColor="@color/color_cinco"
-                                android:layout_gravity="bottom"/>
-                        </LinearLayout>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Si nos lo devuelves"
-                            android:textSize="15sp"
+                            android:layout_gravity="center"
                             android:textColor="@color/color_cinco"
-                            android:layout_gravity="center_horizontal"/>
+                            android:textSize="12sp" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_horizontal"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="bottom"
+                                android:text="0"
+                                android:textColor="@color/color_cinco"
+                                android:textSize="40sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="bottom"
+                                android:text="€"
+                                android:textColor="@color/color_cinco"
+                                android:textSize="25sp" />
+                        </LinearLayout>
+
+                        <com.appcloud.frankiappforyoigo.AutoResizeTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:maxLines="1"
+                            android:text="Si nos lo devuelves"
+                            android:textColor="@color/color_cinco"
+                            android:textSize="15sp" />
                     </LinearLayout>
 
                 </LinearLayout>
             </LinearLayout>
-            <LinearLayout
-                android:visibility="visible"
-                android:id="@+id/ln_sinfin"
+            <RelativeLayout
+                android:id="@+id/rl_cinco"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <LinearLayout
-                    android:id="@+id/ln_color_sinfin"
+                android:layout_height="200dp"
+                android:layout_marginTop="@dimen/margin_tarifa"
+                android:animateLayoutChanges="true"
+                android:background="@drawable/border_cinco"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tv_tarifa_cinco2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
+                    android:layout_margin="5dp"
+                    android:gravity="center_horizontal"
+                    android:text="@string/tarifa_cinco"
+                    android:textColor="@color/color_cinco"
+                    android:textSize="20sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:id="@+id/ln_pago_inicial_cinco"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center_horizontal"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/tv_pago_inicial_cinco2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="bottom"
+                                    android:textColor="@color/color_cinco"
+                                    android:textSize="45sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="bottom"
+                                    android:text="€"
+                                    android:textColor="@color/color_cinco"
+                                    android:textSize="25sp" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:text="PAGO INICIAL"
+                                android:textColor="@color/color_cinco"
+                                android:textSize="15sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center_horizontal"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/tv_cuota_mensual_cinco2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="bottom"
+                                    android:textColor="@color/color_cinco"
+                                    android:textSize="45sp" />
+
+                                <com.appcloud.frankiappforyoigo.AutoResizeTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="bottom"
+                                    android:maxLines="1"
+                                    android:text="€/mes"
+                                    android:textColor="@color/color_cinco"
+                                    android:textSize="25sp" />
+                            </LinearLayout>
+
+                            <com.appcloud.frankiappforyoigo.AutoResizeTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="left"
+                                android:maxLines="1"
+                                android:text="DURANTE 24 MESES"
+                                android:textColor="@color/color_cinco"
+                                android:textSize="15sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ln_gratis_cinco"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center_horizontal"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="bottom"
+                                    android:text="0"
+                                    android:textColor="@color/color_cinco"
+                                    android:textSize="100sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignBaseline="@+id/tv_pago_inicial"
+                                    android:layout_gravity="bottom"
+                                    android:layout_toRightOf="@+id/tv_pago_inicial"
+                                    android:text="€"
+                                    android:textColor="@color/color_cinco"
+                                    android:textSize="80sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/ln_infinita"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:id="@+id/ln_color_infinita"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_tarifa"
-                    android:background="@color/color_sinfin">
+                    android:background="@color/color_infinita"
+                    android:orientation="vertical">
+
                     <TextView
-                        android:id="@+id/tv_tarifa_sinfin"
+                        android:id="@+id/tv_tarifa_infinita"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/tarifa_sinfin"
-                        android:textSize="20sp"
-                        android:textColor="@android:color/white"
+                        android:layout_gravity="center"
                         android:layout_margin="5dp"
-                        android:layout_gravity="center"/>
+                        android:text="@string/tarifa_infinita"
+                        android:textColor="@android:color/white"
+                        android:textSize="20sp" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
+
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
                             android:layout_weight="1"
-                            android:orientation="vertical"
-                            android:layout_marginLeft="20dp">
+                            android:orientation="vertical">
+
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:orientation="horizontal"
-                                android:layout_gravity="center_horizontal">
-                                <TextView
-                                    android:id="@+id/tv_pago_inicial_sinfin"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textSize="45sp"
-                                    android:textColor="@android:color/white"
-                                    android:layout_gravity="bottom"/>
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="€"
-                                    android:textSize="25sp"
-                                    android:textColor="@android:color/white"
-                                    android:layout_gravity="bottom"
-                                    android:layout_alignBaseline="@+id/tv_pago_inicial"
-                                    android:layout_toRightOf="@+id/tv_pago_inicial"/>
-                            </LinearLayout>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="PAGO INICIAL"
-                                android:textSize="15sp"
-                                android:textColor="@android:color/white"
                                 android:layout_gravity="center_horizontal"
-                                />
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical"
-                            android:layout_marginLeft="20dp">
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:orientation="horizontal"
-                                android:layout_gravity="center_horizontal">
+                                android:orientation="horizontal">
+
                                 <TextView
-                                    android:id="@+id/tv_cuota_mensual_sinfin"
+                                    android:id="@+id/tv_pago_inicial_infinita"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textSize="45sp"
+                                    android:layout_gravity="bottom"
                                     android:textColor="@android:color/white"
-                                    android:layout_gravity="bottom"/>
+                                    android:textSize="45sp" />
+
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="€/mes"
-                                    android:textSize="25sp"
+                                    android:layout_alignBaseline="@+id/tv_pago_inicial"
+                                    android:layout_gravity="bottom"
+                                    android:layout_toRightOf="@+id/tv_pago_inicial"
+                                    android:text="€"
                                     android:textColor="@android:color/white"
-                                    android:layout_gravity="bottom"/>
+                                    android:textSize="25sp" />
                             </LinearLayout>
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="DURANTE 24 MESES"
-                                android:textSize="15sp"
+                                android:layout_gravity="center_horizontal"
+                                android:text="PAGO INICIAL"
                                 android:textColor="@android:color/white"
-                                android:layout_gravity="center_horizontal"/>
+                                android:textSize="15sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center_horizontal"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/tv_cuota_mensual_infinita"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="bottom"
+                                    android:textColor="@android:color/white"
+                                    android:textSize="45sp" />
+
+                                <com.appcloud.frankiappforyoigo.AutoResizeTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="bottom"
+                                    android:maxLines="1"
+                                    android:text="€/mes"
+                                    android:textColor="@android:color/white"
+                                    android:textSize="25sp" />
+                            </LinearLayout>
+
+                            <com.appcloud.frankiappforyoigo.AutoResizeTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="left"
+                                android:maxLines="1"
+                                android:text="DURANTE 24 MESES"
+                                android:textColor="@android:color/white"
+                                android:textSize="15sp" />
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="8dp"
-                    android:background="@drawable/border_sinfin"
-                    android:orientation="horizontal">
+                    android:background="@drawable/border_infinita"
+                    android:orientation="horizontal"
+                    android:padding="8dp">
+
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:layout_marginLeft="15dp"
+                        android:layout_weight="1"
                         android:orientation="vertical">
-                        <TextView
+
+                        <com.appcloud.frankiappforyoigo.AutoResizeTextView
+                            android:id="@+id/textView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:maxLines="1"
                             android:text="DESPUÉS PAGO FINAL:"
-                            android:textSize="12sp"
-                            android:textColor="@color/color_sinfin"
-                            android:layout_gravity="center"/>
+                            android:textColor="@color/color_infinita"
+                            android:textSize="12sp" />
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:orientation="horizontal"
-                            android:layout_gravity="center_horizontal">
+                            android:layout_gravity="center_horizontal"
+                            android:orientation="horizontal">
+
                             <TextView
-                                android:id="@+id/tv_pago_final_sinfin"
+                                android:id="@+id/tv_pago_final_infinita"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="40sp"
-                                android:textColor="@color/color_sinfin"
-                                android:layout_gravity="bottom"/>
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/color_infinita"
+                                android:textSize="40sp" />
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="bottom"
                                 android:text="€"
-                                android:textSize="25sp"
-                                android:textColor="@color/color_sinfin"
-                                android:layout_gravity="bottom"                          />
+                                android:textColor="@color/color_infinita"
+                                android:textSize="25sp" />
                         </LinearLayout>
 
-                        <TextView
+                        <com.appcloud.frankiappforyoigo.AutoResizeTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Si te quedas el movil"
-                            android:textSize="15sp"
-                            android:textColor="@color/color_sinfin"
                             android:layout_gravity="center_horizontal"
-                            />
+                            android:maxLines="1"
+                            android:text="Si te quedas el movil"
+                            android:textColor="@color/color_infinita"
+                            android:textSize="15sp" />
                     </LinearLayout>
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="o"
-                        android:textSize="25sp"
+                        android:layout_gravity="center"
                         android:layout_marginLeft="5dp"
-                        android:textColor="@color/color_sinfin"
-                        android:layout_gravity="center"/>
+                        android:text="o"
+                        android:textColor="@color/color_infinita"
+                        android:textSize="25sp" />
+
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:orientation="vertical">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="12sp"
-                            android:textColor="@color/color_sinfin"
-                            android:layout_gravity="center"/>
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal"
-                            android:layout_gravity="center_horizontal">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="40sp"
-                                android:text="0"
-                                android:textColor="@color/color_sinfin"
-                                android:layout_gravity="bottom"/>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="€"
-                                android:textSize="25sp"
-                                android:textColor="@color/color_sinfin"
-                                android:layout_gravity="bottom"/>
-                        </LinearLayout>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textColor="@color/color_infinita"
+                            android:textSize="12sp" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_horizontal"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="bottom"
+                                android:text="0"
+                                android:textColor="@color/color_infinita"
+                                android:textSize="40sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="bottom"
+                                android:text="€"
+                                android:textColor="@color/color_infinita"
+                                android:textSize="25sp" />
+                        </LinearLayout>
+
+                        <com.appcloud.frankiappforyoigo.AutoResizeTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:maxLines="1"
                             android:text="Si nos lo devuelves"
-                            android:textSize="15sp"
-                            android:textColor="@color/color_sinfin"
-                            android:layout_gravity="center_horizontal"/>
+                            android:textColor="@color/color_infinita"
+                            android:textSize="15sp" />
                     </LinearLayout>
 
                 </LinearLayout>
             </LinearLayout>
+            <RelativeLayout
+                android:id="@+id/rl_infinita"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="@dimen/margin_tarifa"
+                android:animateLayoutChanges="true"
+                android:background="@drawable/border_infinita"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tv_tarifa_infinita2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:gravity="center_horizontal"
+                    android:text="@string/tarifa_infinita"
+                    android:textColor="@color/color_infinita"
+                    android:textSize="20sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:id="@+id/ln_pago_inicial_infinita"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center_horizontal"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/tv_pago_inicial_infinita2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="bottom"
+                                    android:textColor="@color/color_infinita"
+                                    android:textSize="45sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignBaseline="@+id/tv_pago_inicial"
+                                    android:layout_gravity="bottom"
+                                    android:layout_toRightOf="@+id/tv_pago_inicial"
+                                    android:text="€"
+                                    android:textColor="@color/color_infinita"
+                                    android:textSize="25sp" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:text="PAGO INICIAL"
+                                android:textColor="@color/color_infinita"
+                                android:textSize="15sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center_horizontal"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/tv_cuota_mensual_infinita2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="bottom"
+                                    android:textColor="@color/color_infinita"
+                                    android:textSize="45sp" />
+
+                                <com.appcloud.frankiappforyoigo.AutoResizeTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="bottom"
+                                    android:maxLines="1"
+                                    android:text="€/mes"
+                                    android:textColor="@color/color_infinita"
+                                    android:textSize="25sp" />
+                            </LinearLayout>
+
+                            <com.appcloud.frankiappforyoigo.AutoResizeTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="left"
+                                android:maxLines="1"
+                                android:text="DURANTE 24 MESES"
+                                android:textColor="@color/color_infinita"
+                                android:textSize="15sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ln_gratis_infinita"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center_horizontal"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="bottom"
+                                    android:text="0"
+                                    android:textColor="@color/color_infinita"
+                                    android:textSize="100sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignBaseline="@+id/tv_pago_inicial"
+                                    android:layout_gravity="bottom"
+                                    android:layout_toRightOf="@+id/tv_pago_inicial"
+                                    android:text="€"
+                                    android:textColor="@color/color_infinita"
+                                    android:textSize="80sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/ln_sinfin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:id="@+id/ln_color_sinfin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_tarifa"
+                    android:background="@color/color_sinfin"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_tarifa_sinfin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        android:text="@string/tarifa_sinfin"
+                        android:textColor="@android:color/white"
+                        android:textSize="20sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center_horizontal"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/tv_pago_inicial_sinfin"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="bottom"
+                                    android:textColor="@android:color/white"
+                                    android:textSize="45sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignBaseline="@+id/tv_pago_inicial"
+                                    android:layout_gravity="bottom"
+                                    android:layout_toRightOf="@+id/tv_pago_inicial"
+                                    android:text="€"
+                                    android:textColor="@android:color/white"
+                                    android:textSize="25sp" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:text="PAGO INICIAL"
+                                android:textColor="@android:color/white"
+                                android:textSize="15sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center_horizontal"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/tv_cuota_mensual_sinfin"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="bottom"
+                                    android:textColor="@android:color/white"
+                                    android:textSize="45sp" />
+
+                                <com.appcloud.frankiappforyoigo.AutoResizeTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="bottom"
+                                    android:maxLines="1"
+                                    android:text="€/mes"
+                                    android:textColor="@android:color/white"
+                                    android:textSize="25sp" />
+                            </LinearLayout>
+
+                            <com.appcloud.frankiappforyoigo.AutoResizeTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="left"
+                                android:maxLines="1"
+                                android:text="DURANTE 24 MESES"
+                                android:textColor="@android:color/white"
+                                android:textSize="15sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/border_sinfin"
+                    android:orientation="horizontal"
+                    android:padding="8dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <com.appcloud.frankiappforyoigo.AutoResizeTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:maxLines="1"
+                            android:text="DESPUÉS PAGO FINAL:"
+                            android:textColor="@color/color_sinfin"
+                            android:textSize="12sp" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_horizontal"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/tv_pago_final_sinfin"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/color_sinfin"
+                                android:textSize="40sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="bottom"
+                                android:text="€"
+                                android:textColor="@color/color_sinfin"
+                                android:textSize="25sp" />
+                        </LinearLayout>
+
+                        <com.appcloud.frankiappforyoigo.AutoResizeTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:maxLines="1"
+                            android:text="Si te quedas el movil"
+                            android:textColor="@color/color_sinfin"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="5dp"
+                        android:text="o"
+                        android:textColor="@color/color_sinfin"
+                        android:textSize="25sp" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textColor="@color/color_sinfin"
+                            android:textSize="12sp" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_horizontal"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="bottom"
+                                android:text="0"
+                                android:textColor="@color/color_sinfin"
+                                android:textSize="40sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="bottom"
+                                android:text="€"
+                                android:textColor="@color/color_sinfin"
+                                android:textSize="25sp" />
+                        </LinearLayout>
+
+                        <com.appcloud.frankiappforyoigo.AutoResizeTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:maxLines="1"
+                            android:text="Si nos lo devuelves"
+                            android:textColor="@color/color_sinfin"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+            <RelativeLayout
+                android:id="@+id/rl_sinfin"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="@dimen/margin_tarifa"
+                android:animateLayoutChanges="true"
+                android:background="@drawable/border_sinfin"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tv_tarifa_sinfin2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:gravity="center_horizontal"
+                    android:text="@string/tarifa_sinfin"
+                    android:textColor="@color/color_sinfin"
+                    android:textSize="20sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:id="@+id/ln_pago_inicial_sinfin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center_horizontal"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/tv_pago_inicial_sinfin2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="bottom"
+                                    android:textColor="@color/color_sinfin"
+                                    android:textSize="45sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignBaseline="@+id/tv_pago_inicial"
+                                    android:layout_gravity="bottom"
+                                    android:layout_toRightOf="@+id/tv_pago_inicial"
+                                    android:text="€"
+                                    android:textColor="@color/color_sinfin"
+                                    android:textSize="25sp" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:text="PAGO INICIAL"
+                                android:textColor="@color/color_sinfin"
+                                android:textSize="15sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center_horizontal"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/tv_cuota_mensual_sinfin2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="bottom"
+                                    android:textColor="@color/color_sinfin"
+                                    android:textSize="45sp" />
+
+                                <com.appcloud.frankiappforyoigo.AutoResizeTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="bottom"
+                                    android:maxLines="1"
+                                    android:text="€/mes"
+                                    android:textColor="@color/color_sinfin"
+                                    android:textSize="25sp" />
+                            </LinearLayout>
+
+                            <com.appcloud.frankiappforyoigo.AutoResizeTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="left"
+                                android:maxLines="1"
+                                android:text="DURANTE 24 MESES"
+                                android:textColor="@color/color_sinfin"
+                                android:textSize="15sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ln_gratis_sinfin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center_horizontal"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="bottom"
+                                    android:text="0"
+                                    android:textColor="@color/color_sinfin"
+                                    android:textSize="100sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignBaseline="@+id/tv_pago_inicial"
+                                    android:layout_gravity="bottom"
+                                    android:layout_toRightOf="@+id/tv_pago_inicial"
+                                    android:text="€"
+                                    android:textColor="@color/color_sinfin"
+                                    android:textSize="80sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
             <LinearLayout
                 android:id="@+id/ln_pago_unico"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_marginTop="@dimen/margin_tarifa"
                 android:orientation="vertical">
+
                 <LinearLayout
                     android:id="@+id/ln_pago_unico_prepago"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
+                    android:layout_weight="4"
+                    android:background="@color/color_pago_unico"
                     android:orientation="vertical"
-                    android:paddingBottom="5dp"
-                    android:background="@color/color_pago_unico">
+                    android:paddingBottom="5dp">
+
                     <TextView
                         android:id="@+id/tv_etiqueta_prepago"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="20sp"
                         android:layout_margin="5dp"
+                        android:gravity="center_horizontal"
                         android:text="@string/pago_unico_prepago"
                         android:textColor="@android:color/white"
-                        android:gravity="center_horizontal"/>
+                        android:textSize="20sp" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="horizontal"
                         android:padding="5dp">
+
                         <LinearLayout
                             android:id="@+id/ln_pago_unico_uno"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:layout_marginRight="8dp"
                             android:layout_marginLeft="8dp"
-                            android:padding="8dp"
+                            android:layout_marginRight="8dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/background_cero"
                             android:orientation="vertical"
-                            android:background="@drawable/background_cero">
-                            <TextView
+                            android:padding="8dp">
+
+                            <com.appcloud.frankiappforyoigo.AutoResizeTextView
                                 android:id="@+id/tv_tarifa_prepago_uno"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:maxLines="1"
                                 android:text="@string/tarifa_uno"
-                                android:textColor="@android:color/white"
-                                android:textSize="16sp"
                                 android:textAlignment="center"
-                                android:gravity="center"/>
+                                android:textColor="@android:color/white"
+                                android:textSize="14sp" />
+
                             <TextView
                                 android:id="@+id/tv_pago_unico_uno"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:gravity="center"
                                 android:text="-"
                                 android:textColor="@android:color/white"
-                                android:textSize="16dp"
-                                android:gravity="center"/>
+                                android:textSize="14sp" />
 
                         </LinearLayout>
+
                         <LinearLayout
                             android:id="@+id/ln_pago_unico_650"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:layout_marginRight="8dp"
                             android:layout_marginLeft="8dp"
-                            android:padding="8dp"
+                            android:layout_marginRight="8dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/background_cinco"
                             android:orientation="vertical"
-                            android:background="@drawable/background_cinco">
-                            <TextView
+                            android:padding="8dp">
+
+                            <com.appcloud.frankiappforyoigo.AutoResizeTextView
                                 android:id="@+id/tv_tarifa_prepago_650"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:maxLines="1"
                                 android:text="@string/tarifa_650"
-                                android:textColor="@android:color/white"
-                                android:textSize="16sp"
                                 android:textAlignment="center"
-                                android:gravity="center"/>
+                                android:textColor="@android:color/white"
+                                android:textSize="14sp" />
+
                             <TextView
                                 android:id="@+id/tv_pago_unico_650"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:gravity="center"
                                 android:text="-"
                                 android:textColor="@android:color/white"
-                                android:textSize="16dp"
-                                android:gravity="center"/>
+                                android:textSize="14sp" />
                         </LinearLayout>
 
 
                     </LinearLayout>
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/ln_pago_unico_contrato"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:padding="8dp"
+                    android:layout_weight="7"
                     android:background="@drawable/border_pago_unico"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
                     <TextView
                         android:id="@+id/tv_etiqueta_contrato"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/pago_unico_contrato"
-                        android:textSize="20sp"
-                        android:textColor="@color/color_pago_unico"
                         android:layout_margin="5dp"
-                        android:gravity="center_horizontal"/>
+                        android:gravity="center_horizontal"
+                        android:text="@string/pago_unico_contrato"
+                        android:textColor="@color/color_pago_unico"
+                        android:textSize="20sp" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:padding="5dp">
+
                         <LinearLayout
                             android:id="@+id/ln_pago_unico_cero"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="1"
                             android:layout_marginRight="8dp"
-                            android:layout_marginLeft="8dp"
-                            android:padding="8dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/background_cero"
                             android:orientation="vertical"
-                            android:background="@drawable/background_cero">
-                            <TextView
+                            android:padding="8dp">
+
+                            <com.appcloud.frankiappforyoigo.AutoResizeTextView
                                 android:id="@+id/tv_tarifa_contrato_cero"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:maxLines="1"
                                 android:text="@string/tarifa_cero"
-                                android:textColor="@android:color/white"
-                                android:textSize="12sp"
                                 android:textAlignment="center"
-                                android:gravity="center"/>
+                                android:textColor="@android:color/white"
+                                android:textSize="14sp" />
+
                             <TextView
                                 android:id="@+id/tv_pago_unico_cero"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:gravity="center"
                                 android:text="-"
                                 android:textColor="@android:color/white"
-                                android:textSize="16dp"
-                                android:gravity="center"/>
+                                android:textSize="14sp" />
 
                         </LinearLayout>
+
                         <LinearLayout
                             android:id="@+id/ln_pago_unico_cinco"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:layout_marginRight="8dp"
                             android:layout_marginLeft="8dp"
-                            android:padding="8dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/background_cinco"
                             android:orientation="vertical"
-                            android:background="@drawable/background_cinco">
-                            <TextView
+                            android:padding="8dp">
+
+                            <com.appcloud.frankiappforyoigo.AutoResizeTextView
                                 android:id="@+id/tv_tarifa_contrato_cinco"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:maxLines="1"
                                 android:text="@string/tarifa_cinco"
-                                android:textColor="@android:color/white"
-                                android:textSize="12sp"
                                 android:textAlignment="center"
-                                android:gravity="center"/>
+                                android:textColor="@android:color/white"
+                                android:textSize="14sp" />
+
                             <TextView
                                 android:id="@+id/tv_pago_unico_cinco"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:gravity="center"
                                 android:text="-"
                                 android:textColor="@android:color/white"
-                                android:textSize="16dp"
-                                android:gravity="center"/>
+                                android:textSize="14sp" />
                         </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="5dp">
+
+                        <LinearLayout
+                            android:id="@+id/ln_pago_unico_infinita"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="8dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/background_infinita"
+                            android:orientation="vertical"
+                            android:padding="8dp">
+
+                            <com.appcloud.frankiappforyoigo.AutoResizeTextView
+                                android:id="@+id/tv_tarifa_contrato_infinita"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:text="@string/tarifa_infinita"
+                                android:textAlignment="center"
+                                android:textColor="@android:color/white"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/tv_pago_unico_infinita"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:text="-"
+                                android:textColor="@android:color/white"
+                                android:textSize="14sp" />
+
+                        </LinearLayout>
+
                         <LinearLayout
                             android:id="@+id/ln_pago_unico_sinfin"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:layout_marginRight="8dp"
                             android:layout_marginLeft="8dp"
-                            android:padding="8dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/background_sinfin"
                             android:orientation="vertical"
-                            android:background="@drawable/background_sinfin">
-                            <TextView
+                            android:padding="8dp">
+
+                            <com.appcloud.frankiappforyoigo.AutoResizeTextView
                                 android:id="@+id/tv_tarifa_contrato_sinfin"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:maxLines="1"
                                 android:text="@string/tarifa_sinfin"
-                                android:textColor="@android:color/white"
-                                android:textSize="12dp"
                                 android:textAlignment="center"
-                                android:gravity="center"/>
+                                android:textColor="@android:color/white"
+                                android:textSize="14sp" />
+
                             <TextView
                                 android:id="@+id/tv_pago_unico_sinfin"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:gravity="center"
                                 android:text="-"
                                 android:textColor="@android:color/white"
-                                android:textSize="16dp"
-                                android:gravity="center"/>
+                                android:textSize="14sp" />
                         </LinearLayout>
+
 
                     </LinearLayout>
 
                 </LinearLayout>
+
+
             </LinearLayout>
         </LinearLayout>
 

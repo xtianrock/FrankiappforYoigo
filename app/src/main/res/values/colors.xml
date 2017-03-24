@@ -9,9 +9,12 @@
     <color name="color_cinco">#7fb52b</color>
     <color name="color_cinco_dark">#689f38</color>
     <color name="color_cinco_accent">#FFC107</color>
-    <color name="color_sinfin">#b04192</color>
-    <color name="color_sinfin_dark">#893272</color>
-    <color name="color_sinfin_accent">#03A9F4</color>
+    <color name="color_infinita">#b04192</color>
+    <color name="color_infinita_dark">#893272</color>
+    <color name="color_infinita_accent">#03A9F4</color>
+    <color name="color_sinfin">#1565c0</color>
+    <color name="color_sinfin_dark">#0d47a1</color>
+    <color name="color_sinfin_accent">#FF4081</color>
     <color name="color_pago_unico">#9e9e9e</color>
     <color name="color_pago_unico_dark">#757575</color>
     <color name="color_pago_unico_accent">#00b8d4</color>

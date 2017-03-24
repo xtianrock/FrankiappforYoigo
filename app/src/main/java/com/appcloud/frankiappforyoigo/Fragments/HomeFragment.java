@@ -21,7 +21,7 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 
 import com.appcloud.frankiappforyoigo.Activities.DetalleTerminalActivity;
-import com.appcloud.frankiappforyoigo.Configuracion;
+import com.appcloud.frankiappforyoigo.Config;
 import com.appcloud.frankiappforyoigo.POJO.OfertaTactica;
 import com.appcloud.frankiappforyoigo.R;
 import com.appcloud.frankiappforyoigo.Utils.FirebaseSingleton;
@@ -198,7 +198,7 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(getActivity(), DetalleTerminalActivity.class);
-                        intent.putExtra(Configuracion.KEY_TERMINAL, keyTerminal);
+                        intent.putExtra(Config.KEY_TERMINAL, keyTerminal);
                         ImageView ivFoto = (ImageView) v.findViewById(R.id.iv_terminal_foto);
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                             ivFoto.setTransitionName("foto_terminal");
@@ -210,7 +210,7 @@ public class HomeFragment extends Fragment {
                         startActivity(intent, options.toBundle());
                     }
                 };
-                viewHolder.bindToOferta(getActivity().getApplicationContext(),terminal,onClickListener);
+                viewHolder.bindToOferta(getActivity().getApplicationContext(),terminal,keyTerminal,onClickListener);
             }
         };
         rvNuevosModelos.setAdapter(adapterMasVendidos);
@@ -225,7 +225,7 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(getActivity(), DetalleTerminalActivity.class);
-                        intent.putExtra(Configuracion.KEY_TERMINAL, keyTerminal);
+                        intent.putExtra(Config.KEY_TERMINAL, keyTerminal);
                         ImageView ivFoto = (ImageView) v.findViewById(R.id.iv_terminal_foto);
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                             ivFoto.setTransitionName("foto_terminal");
@@ -237,7 +237,7 @@ public class HomeFragment extends Fragment {
                         startActivity(intent, options.toBundle());
                     }
                 };
-                viewHolder.bindToOferta(getActivity().getApplicationContext(),terminal,onClickListener);
+                viewHolder.bindToOferta(getActivity().getApplicationContext(),terminal,keyTerminal,onClickListener);
             }
         };
         rvMasBuscados.setAdapter(adapterLoquesea);
