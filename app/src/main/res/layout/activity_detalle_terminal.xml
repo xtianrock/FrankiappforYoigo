@@ -46,18 +46,17 @@
                     app:layout_aspectRatio="80%"
                     app:layout_widthPercent="50%" />
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_weight="2"
-                    android:padding="12dp"
-                    app:layout_widthPercent="50%">
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+
+                <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:padding="12dp"
+                        app:layout_widthPercent="50%"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
                         android:gravity="center">
 
                         <LinearLayout
@@ -201,12 +200,12 @@
                                 android:text="3200 mah"
                                 android:textColor="@android:color/white"
                                 android:textSize="20sp" />
-                            /
+
                         </LinearLayout>
 
 
                     </RelativeLayout>
-                </LinearLayout>
+
 
             </android.support.percent.PercentRelativeLayout>
 

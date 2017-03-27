@@ -1,6 +1,7 @@
 package com.appcloud.frankiappforyoigo.Activities;
 
 import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
@@ -21,7 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
-public class DetalleTerminalActivity extends AppCompatActivity {
+public class DetalleTerminalActivity extends BaseActivity {
 
     private String keyTerminal;
     private Context context = this;
@@ -34,7 +35,10 @@ public class DetalleTerminalActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_terminal);
-        DatabaseReference databaseReference = FirebaseSingleton.getDatabase().getReference();
+        //DatabaseReference databaseReference = FirebaseSingleton.getDatabase().getReference();
+
+
+
         keyTerminal = getIntent().getStringExtra(Config.KEY_TERMINAL);
         ivFotoTerminal = (ImageView) findViewById(R.id.iv_terminal_foto);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -48,7 +52,7 @@ public class DetalleTerminalActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         if (keyTerminal != null) {
-            databaseReference.child("ofertas_tacticas").child(keyTerminal).addListenerForSingleValueEvent(new ValueEventListener() {
+            mDatabase.child("ofertas_tacticas").child(keyTerminal).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     ofertaTactica = dataSnapshot.getValue(OfertaTactica.class);

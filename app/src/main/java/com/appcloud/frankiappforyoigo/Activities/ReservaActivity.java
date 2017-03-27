@@ -36,6 +36,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.joanfuentes.hintcase.HintCase;
 import com.joanfuentes.hintcase.RectangularShape;
+import com.joanfuentes.hintcaseassets.hintcontentholders.SimpleHintContentHolder;
+import com.joanfuentes.hintcaseassets.shapeanimators.RevealCircleShapeAnimator;
+import com.joanfuentes.hintcaseassets.shapeanimators.UnrevealCircleShapeAnimator;
+import com.joanfuentes.hintcaseassets.shapes.CircularShape;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
@@ -48,7 +52,7 @@ import java.util.List;
 public class ReservaActivity extends BaseActivity {
 
     private Context context = this;
-    private int cuotaTerminal=0;
+    private double cuotaTerminal=0;
     private Toolbar toolbar;
     private LinearLayout lnDetalleTarifa, lnPlus;
     private TextView tvTitle;
@@ -56,7 +60,7 @@ public class ReservaActivity extends BaseActivity {
     private String keyTerminal, keyTarifa;
     private OfertaTactica ofertaTactica;
     private Button btReserva;
-    private boolean pagoUnico, tarifaCargada = false, terminalCargado = false;
+    private boolean pagoUnico, tarifaCargada = false, terminalCargado = false, showingHint = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,21 +72,11 @@ public class ReservaActivity extends BaseActivity {
             setTheme(Commons.getTema(keyTarifa));
         setContentView(R.layout.activity_reserva);
 
-        lnDetalleTarifa = (LinearLayout)findViewById(R.id.ln_detalle_tarifa);
-        tvTitle = (TextView) findViewById(R.id.tv_title);
-        btReserva = (Button)findViewById(R.id.bt_reserva);
-        toolbar = (Toolbar)findViewById(R.id.toolbar);
+
+        setViews();
         setSupportActionBar(toolbar);
 
-        if(getIntent().getAction().equals(Config.VER)){
-            btReserva.setVisibility(View.GONE);
-        }
-        btReserva.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                reservar();
-            }
-        });
+
 
         prepararDatosOfertaTactica();
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child(Config.TARIFAS).child(keyTarifa);
@@ -100,7 +94,25 @@ public class ReservaActivity extends BaseActivity {
         });
     }
 
-
+    private void setViews()
+    {
+       //lnDetalleTarifa = (LinearLayout)findViewById(R.id.ln_detalle_tarifa);
+        tvTitle = (TextView) findViewById(R.id.tv_title);
+        toolbar = (Toolbar)findViewById(R.id.toolbar);
+        btReserva = (Button)findViewById(R.id.bt_reserva);
+        if(btReserva != null)
+        {
+            if(getIntent().getAction().equals(Config.VER)){
+                btReserva.setVisibility(View.GONE);
+            }
+            btReserva.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    reservar();
+                }
+            });
+        }
+    }
 
     private void prepararDatosOfertaTactica(){
         if (keyTerminal != null) {
@@ -151,10 +163,10 @@ public class ReservaActivity extends BaseActivity {
             TextView tvPagoInicial =(TextView)findViewById(R.id.tv_pago_inicial);
             TextView tvCuotaTotal =(TextView)findViewById(R.id.tv_cuota_total);
             TextView tvPagoFinal =(TextView)findViewById(R.id.tv_pago_final);
-            int cuotaTarifa = Integer.parseInt(tarifa.getCuota());
+
             switch (keyTarifa){
                 case Config.TARIFA_CERO:
-                    cuotaTerminal = Integer.parseInt(Commons.tratarPrecio(ofertaTactica.getCuotaCero()));
+                    cuotaTerminal = Double.parseDouble(Commons.tratarPrecio(ofertaTactica.getCuotaCero()));
                     tvPagoInicial.setText(Commons.tratarPrecio(ofertaTactica.getPagoInicialCero()));
                     tvPagoFinal.setText(Commons.tratarPrecio(ofertaTactica.getPagoFinalCero()));
                     if(pagoUnico){
@@ -163,7 +175,7 @@ public class ReservaActivity extends BaseActivity {
                     }
                     break;
                 case Config.TARIFA_CINCO:
-                    cuotaTerminal = Integer.parseInt(Commons.tratarPrecio(ofertaTactica.getCuotaCinco()));
+                    cuotaTerminal = Double.parseDouble(Commons.tratarPrecio(ofertaTactica.getCuotaCinco()));
                     tvPagoInicial.setText(Commons.tratarPrecio(ofertaTactica.getPagoInicialCinco()));
                     tvPagoFinal.setText(Commons.tratarPrecio(ofertaTactica.getPagoFinalCinco()));
                     if(pagoUnico){
@@ -172,7 +184,7 @@ public class ReservaActivity extends BaseActivity {
                     }
                     break;
                 case Config.TARIFA_INFINITA:
-                    cuotaTerminal = Integer.parseInt(Commons.tratarPrecio(ofertaTactica.getCuotaInfinita()));
+                    cuotaTerminal = Double.parseDouble(Commons.tratarPrecio(ofertaTactica.getCuotaInfinita()));
                     tvPagoInicial.setText(Commons.tratarPrecio(ofertaTactica.getPagoInicialInfinita()));
                     tvPagoFinal.setText(Commons.tratarPrecio(ofertaTactica.getPagoFinalInfinita()));
                     if(pagoUnico){
@@ -181,7 +193,7 @@ public class ReservaActivity extends BaseActivity {
                     }
                     break;
                 case Config.TARIFA_SINFIN:
-                    cuotaTerminal = Integer.parseInt(Commons.tratarPrecio(ofertaTactica.getCuotaSinFin()));
+                    cuotaTerminal = Double.parseDouble(Commons.tratarPrecio(ofertaTactica.getCuotaSinFin()));
                     tvPagoInicial.setText(Commons.tratarPrecio(ofertaTactica.getPagoInicialSinFin()));
                     tvPagoFinal.setText(Commons.tratarPrecio(ofertaTactica.getPagoFinalSinFin()));
                     if(pagoUnico){
@@ -190,7 +202,7 @@ public class ReservaActivity extends BaseActivity {
                     }
                     break;
                 case Config.COMBINADA_NARANJA_50:
-                    cuotaTerminal = Integer.parseInt(Commons.tratarPrecio(ofertaTactica.getCuotaCombinadaNaranja50()));
+                    cuotaTerminal = Double.parseDouble(Commons.tratarPrecio(ofertaTactica.getCuotaCombinadaNaranja50()));
                     tvPagoInicial.setText(Commons.tratarPrecio(ofertaTactica.getPagoInicialCombinadaNaranja50()));
                     tvPagoFinal.setText(Commons.tratarPrecio(ofertaTactica.getPagoFinalCombinadaNaranja50()));
                     if(pagoUnico){
@@ -198,7 +210,7 @@ public class ReservaActivity extends BaseActivity {
                         setPagoUnico();
                     }
                 case Config.COMBINADA_NARANJA_300:
-                    cuotaTerminal = Integer.parseInt(Commons.tratarPrecio(ofertaTactica.getCuotaCombinadaNaranja300()));
+                    cuotaTerminal = Double.parseDouble(Commons.tratarPrecio(ofertaTactica.getCuotaCombinadaNaranja300()));
                     tvPagoInicial.setText(Commons.tratarPrecio(ofertaTactica.getPagoInicialCombinadaNaranja300()));
                     tvPagoFinal.setText(Commons.tratarPrecio(ofertaTactica.getPagoFinalCombinadaNaranja300()));
                     if(pagoUnico){
@@ -206,7 +218,7 @@ public class ReservaActivity extends BaseActivity {
                         setPagoUnico();
                     }
                 case Config.COMBINADA_VERDE_50:
-                    cuotaTerminal = Integer.parseInt(Commons.tratarPrecio(ofertaTactica.getCuotaCombinadaVerde50()));
+                    cuotaTerminal = Double.parseDouble(Commons.tratarPrecio(ofertaTactica.getCuotaCombinadaVerde50()));
                     tvPagoInicial.setText(Commons.tratarPrecio(ofertaTactica.getPagoInicialCombinadaVerde50()));
                     tvPagoFinal.setText(Commons.tratarPrecio(ofertaTactica.getPagoFinalCombinadaVerde50()));
                     if(pagoUnico){
@@ -214,7 +226,7 @@ public class ReservaActivity extends BaseActivity {
                         setPagoUnico();
                     }
                 case Config.COMBINADA_VERDE_300:
-                    cuotaTerminal = Integer.parseInt(Commons.tratarPrecio(ofertaTactica.getCuotaCombinadaVerde300()));
+                    cuotaTerminal = Double.parseDouble(Commons.tratarPrecio(ofertaTactica.getCuotaCombinadaVerde300()));
                     tvPagoInicial.setText(Commons.tratarPrecio(ofertaTactica.getPagoInicialCombinadaVerde300()));
                     tvPagoFinal.setText(Commons.tratarPrecio(ofertaTactica.getPagoFinalCombinadaVerde300()));
                     if(pagoUnico){
@@ -222,7 +234,7 @@ public class ReservaActivity extends BaseActivity {
                         setPagoUnico();
                     }
                 case Config.COMBINADA_MORADA_50:
-                    cuotaTerminal = Integer.parseInt(Commons.tratarPrecio(ofertaTactica.getCuotaCombinadaMorada50()));
+                    cuotaTerminal = Double.parseDouble(Commons.tratarPrecio(ofertaTactica.getCuotaCombinadaMorada50()));
                     tvPagoInicial.setText(Commons.tratarPrecio(ofertaTactica.getPagoInicialCombinadaMorada50()));
                     tvPagoFinal.setText(Commons.tratarPrecio(ofertaTactica.getPagoFinalCombinadaMorada50()));
                     if(pagoUnico){
@@ -230,7 +242,7 @@ public class ReservaActivity extends BaseActivity {
                         setPagoUnico();
                     }
                 case Config.COMBINADA_MORADA_300:
-                    cuotaTerminal = Integer.parseInt(Commons.tratarPrecio(ofertaTactica.getCuotaCombinadaMorada300()));
+                    cuotaTerminal = Double.parseDouble(Commons.tratarPrecio(ofertaTactica.getCuotaCombinadaMorada300()));
                     tvPagoInicial.setText(Commons.tratarPrecio(ofertaTactica.getPagoInicialCombinadaMorada300()));
                     tvPagoFinal.setText(Commons.tratarPrecio(ofertaTactica.getPagoFinalCombinadaMorada300()));
                     if(pagoUnico){
@@ -238,7 +250,7 @@ public class ReservaActivity extends BaseActivity {
                         setPagoUnico();
                     }
                 case Config.COMBINADA_AZUL_50:
-                    cuotaTerminal = Integer.parseInt(Commons.tratarPrecio(ofertaTactica.getCuotaCombinadaAzul50()));
+                    cuotaTerminal = Double.parseDouble(Commons.tratarPrecio(ofertaTactica.getCuotaCombinadaAzul50()));
                     tvPagoInicial.setText(Commons.tratarPrecio(ofertaTactica.getPagoInicialCombinadaAzul50()));
                     tvPagoFinal.setText(Commons.tratarPrecio(ofertaTactica.getPagoFinalCombinadaAzul50()));
                     if(pagoUnico){
@@ -246,7 +258,7 @@ public class ReservaActivity extends BaseActivity {
                         setPagoUnico();
                     }
                 case Config.COMBINADA_AZUL_300:
-                    cuotaTerminal = Integer.parseInt(Commons.tratarPrecio(ofertaTactica.getCuotaCombinadaAzul300()));
+                    cuotaTerminal = Double.parseDouble(Commons.tratarPrecio(ofertaTactica.getCuotaCombinadaAzul300()));
                     tvPagoInicial.setText(Commons.tratarPrecio(ofertaTactica.getPagoInicialCombinadaAzul300()));
                     tvPagoFinal.setText(Commons.tratarPrecio(ofertaTactica.getPagoFinalCombinadaAzul300()));
                     if(pagoUnico){
@@ -263,8 +275,27 @@ public class ReservaActivity extends BaseActivity {
                     setPagoUnico();
                     break;
             }
-            tvCuotaTotal.setText(String.valueOf(cuotaTarifa+cuotaTerminal));
-            tvCuotaTerminal.setText(String.valueOf(cuotaTerminal));
+            if(tarifa.getDuracion_promo()!=null)
+            {
+                double cuotaTotal = tarifa.getCuota_promo()+cuotaTerminal;
+                if(cuotaTotal == (long) cuotaTotal)
+                    tvCuotaTotal.setText(String.format("%d",(long)cuotaTotal));
+                else
+                    tvCuotaTotal.setText( String.format("%s",cuotaTotal));
+            }
+            else
+            {
+                double cuotaTotal = tarifa.getCuota()+cuotaTerminal;
+                if(cuotaTotal == (long) cuotaTotal)
+                    tvCuotaTotal.setText(String.format("%d",(long)cuotaTotal));
+                else
+                    tvCuotaTotal.setText( String.format("%s",cuotaTotal));
+            }
+
+            if(cuotaTerminal == (long) cuotaTerminal)
+                tvCuotaTerminal.setText(String.format("%d",(long)cuotaTerminal));
+            else
+                tvCuotaTerminal.setText( String.format("%s",cuotaTerminal));
 
         }
     }
@@ -272,7 +303,7 @@ public class ReservaActivity extends BaseActivity {
     private void  setDetalleTarifa(){
         LinearLayout lnCosteMinuto = (LinearLayout) findViewById(R.id.ln_coste_minuto);
         RelativeLayout rlIlimitadas = (RelativeLayout) findViewById(R.id.ln_ilimitadas);
-        LinearLayout lnMinutos = (LinearLayout)findViewById(R.id.ln_minutos);
+        //LinearLayout lnMinutos = (LinearLayout)findViewById(R.id.ln_minutos);
         LinearLayout lnMovil = (LinearLayout)findViewById(R.id.ln_tarifa_movil);
         LinearLayout lnFibra = (LinearLayout)findViewById(R.id.ln_tarifa_fibra);
         lnPlus = (LinearLayout)findViewById(R.id.ln_plus);
@@ -305,10 +336,21 @@ public class ReservaActivity extends BaseActivity {
             tvDatos.setText( String.format("%s",datos));
 
         tvUnidadDatos.setText(tarifa.getUnidad_datos());
-        if(tarifa.getCuota_promo()!= null)
-            tvCuota.setText(tarifa.getCuota_promo());
+        if(tarifa.getDuracion_promo()!= null)
+        {
+            if(tarifa.getCuota_promo() == (long) tarifa.getCuota_promo())
+                tvCuota.setText(String.format("%d",(long)tarifa.getCuota_promo()));
+            else
+                tvCuota.setText( String.format("%s",tarifa.getCuota_promo()));
+        }
         else
-            tvCuota.setText(tarifa.getCuota());
+        {
+            if(tarifa.getCuota() == (long) tarifa.getCuota())
+                tvCuota.setText(String.format("%d",(long)tarifa.getCuota()));
+            else
+                tvCuota.setText( String.format("%s",tarifa.getCuota()));
+        }
+
 
         if(tarifa.getVelocidad_fibra()!=null)
         {
@@ -334,8 +376,13 @@ public class ReservaActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        lnPlus.setVisibility(View.GONE);
+        if(!showingHint)
+        {
+            super.onBackPressed();
+            lnPlus.setVisibility(View.GONE);
+        }
+
+
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -347,8 +394,8 @@ public class ReservaActivity extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.info_tarifa:
-                //showHint();
+            case R.id.action_info_tarifa:
+                showHint();
                 Snackbar.make(tvTitle, "Se deberia abrir el detalle de la tarifa", Snackbar.LENGTH_LONG)
                         .show();
                 break;
@@ -426,9 +473,34 @@ public class ReservaActivity extends BaseActivity {
 
     protected void showHint() {
 
-        View parentView = getWindow().getDecorView();
-        new HintCase(parentView)
-                .setTarget(findViewById(R.id.info_tarifa), new RectangularShape(), HintCase.TARGET_IS_NOT_CLICKABLE)
+        View actionInfo = findViewById(R.id.action_info_tarifa);
+        TypedValue typedValue = new TypedValue();
+        getTheme().resolveAttribute(R.attr.colorAccent, typedValue, true);
+        int color = typedValue.data;
+
+        SimpleHintContentHolder blockInfo =
+                new SimpleHintContentHolder.Builder(context)
+                        .setContentTitle("Informacion de la Tarifa")
+                        .setContentText("Pulsando en este boton obtendra informacion detallada de la tarifa.")
+                        .setTitleStyle(R.style.AppTheme_hintStyleTitle)
+                        .setContentStyle(R.style.AppTheme_hintStyleDesc)
+                        .setMarginByResourcesId(R.dimen.activity_vertical_margin,
+                                R.dimen.activity_horizontal_margin,
+                                R.dimen.activity_vertical_margin,
+                                R.dimen.activity_horizontal_margin)
+                        .build();
+        new HintCase(actionInfo.getRootView())
+                .setTarget(actionInfo, new CircularShape(), HintCase.TARGET_IS_CLICKABLE)
+                .setShapeAnimators(new RevealCircleShapeAnimator(), new UnrevealCircleShapeAnimator())
+                .setHintBlock(blockInfo)
+                .setBackgroundColor(color)
+                .setOnClosedListener(new HintCase.OnClosedListener() {
+                    @Override
+                    public void onClosed() {
+                        showingHint = false;
+                    }
+                })
                 .show();
+        showingHint = true;
     }
 }

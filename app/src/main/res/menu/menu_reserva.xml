@@ -7,7 +7,7 @@
         android:title="@string/action_settings"
         app:showAsAction="never" /-->
     <item
-        android:id="@+id/info_tarifa"
+        android:id="@+id/action_info_tarifa"
         android:orderInCategory="100"
         android:title="Cargar datos"
         app:showAsAction="ifRoom"

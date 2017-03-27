@@ -6,8 +6,8 @@ package com.appcloud.frankiappforyoigo.POJO;
 public class Tarifa {
 
     private String tarifa;
-    private String cuota;
-    private String cuota_promo;
+    private double cuota;
+    private double cuota_promo;
     private String duracion_promo;
     private double datos;
     private double datos_extra;
@@ -30,11 +30,11 @@ public class Tarifa {
         this.tarifa = tarifa;
     }
 
-    public String getCuota() {
+    public double getCuota() {
         return cuota;
     }
 
-    public void setCuota(String cuota) {
+    public void setCuota(double cuota) {
         this.cuota = cuota;
     }
 
@@ -78,11 +78,11 @@ public class Tarifa {
         this.unidad_datos = unidad_datos;
     }
 
-    public String getCuota_promo() {
+    public double getCuota_promo() {
         return cuota_promo;
     }
 
-    public void setCuota_promo(String cuota_promo) {
+    public void setCuota_promo(double cuota_promo) {
         this.cuota_promo = cuota_promo;
     }
 
