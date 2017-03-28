@@ -4,6 +4,7 @@ package com.appcloud.frankiappforyoigo.Activities;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AlertDialog;
@@ -65,6 +66,9 @@ public class ReservaActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            postponeEnterTransition();
+        }
         keyTerminal = getIntent().getStringExtra(Config.KEY_TERMINAL);
         pagoUnico = getIntent().getBooleanExtra(Config.PAGO_UNICO,false);
         keyTarifa = getIntent().getStringExtra(Config.KEY_TARIFA);
@@ -124,23 +128,18 @@ public class ReservaActivity extends BaseActivity {
                     final ImageView ivFotoTerminal = (ImageView)findViewById(R.id.iv_terminal_foto);
                     Picasso.with(context)
                             .load(ofertaTactica.getFotoUrl())
-                            .transform(new PicassoRoundedBordersTransformation(5,0))
-                            .networkPolicy(NetworkPolicy.OFFLINE)
                             .placeholder(R.drawable.phone_mockup)
+                            .error(R.drawable.phone_mockup)
                             .into(ivFotoTerminal,new Callback() {
                                 @Override
                                 public void onSuccess() {
-
+                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                                        startPostponedEnterTransition();
+                                    }
                                 }
 
                                 @Override
                                 public void onError() {
-                                    //Try again online if cache failed
-                                    Picasso.with(context)
-                                            .load(ofertaTactica.getFotoUrl())
-                                            .placeholder(R.drawable.phone_mockup)
-                                            .error(R.drawable.phone_mockup)
-                                            .into(ivFotoTerminal);
                                 }
                             });
                     TextView tvNombreTerminal = (TextView)findViewById(R.id.tv_terminal_nombre);
@@ -320,7 +319,7 @@ public class ReservaActivity extends BaseActivity {
             tvLlamadas.setText(tarifa.getPrecio_minuto());
             if(tarifa.getMinutos_gratis()!=null && !tarifa.getMinutos_gratis().equals(""))
             {
-                tvMinnutos.setText("+"+tarifa.getMinutos_gratis()+"min");
+                tvMinnutos.setText("+"+tarifa.getMinutos_gratis()+"\nmin");
             }else{
                 tvMinnutos.setVisibility(View.GONE);
             }

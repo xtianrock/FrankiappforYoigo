@@ -31,7 +31,7 @@ public class ViewPagerTarifasAdapter extends FragmentPagerAdapter {
                     fragment.setArguments(bundle);
                     break;
 
-            case 1: fragment = new TarifasMovilesFragment();
+            case 1: fragment = new TarifasCombinadasFragment();
                     fragment.setArguments(bundle);
                     break;
         }

@@ -103,14 +103,20 @@ public class ReservasViewHolder extends RecyclerView.ViewHolder {
                 intent.putExtra(Config.PAGO_UNICO, reserva.isPagoUnico());
                 intent.setAction(Config.VER);
 
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     mView.setTransitionName("color_bar");
-                }
-                Pair<View, String> p1 = Pair.create((View) mView, "color_bar");
+                    Pair<View, String> p1 = Pair.create((View) mView, "color_bar");
 
-                ActivityOptionsCompat options = ActivityOptionsCompat.
-                        makeSceneTransitionAnimation((Activity) context, p1);
-                context.startActivity(intent, options.toBundle());
+                    ActivityOptionsCompat options = ActivityOptionsCompat.
+                            makeSceneTransitionAnimation((Activity) context, p1);
+                    context.startActivity(intent, options.toBundle());
+                }
+                else
+                {
+                    context.startActivity(intent);
+                }*/
+                context.startActivity(intent);
+
             }
         });
     }

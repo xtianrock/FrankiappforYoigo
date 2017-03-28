@@ -30,7 +30,7 @@ public class TerminalesViewHolder extends RecyclerView.ViewHolder {
         mView = view;
         ivFoto = (ImageView) view.findViewById(R.id.iv_terminal_foto);
         tvNombre = (TextView) view.findViewById(R.id.tv_terminal_nombre);
-        lnCero = (LinearLayout)view.findViewById(R.id.ln_cero);
+        /*lnCero = (LinearLayout)view.findViewById(R.id.ln_cero);
         lnCinco = (LinearLayout)view.findViewById(R.id.ln_cinco);
         lnInfinita = (LinearLayout)view.findViewById(R.id.ln_infinita);
         lnSinfin = (LinearLayout)view.findViewById(R.id.ln_sinfin);
@@ -41,7 +41,7 @@ public class TerminalesViewHolder extends RecyclerView.ViewHolder {
         tvPagoInicialInfinita = (TextView)view.findViewById(R.id.tv_pago_inicial_infinita);
         tvCuotaMensualInfinita = (TextView)view.findViewById(R.id.tv_cuota_mensual_infinita);
         tvPagoInicialSinfin = (TextView)view.findViewById(R.id.tv_pago_inicial_sinfin);
-        tvCuotaMensualSinfin = (TextView)view.findViewById(R.id.tv_cuota_mensual_sinfin);
+        tvCuotaMensualSinfin = (TextView)view.findViewById(R.id.tv_cuota_mensual_sinfin);*/
 
     }
 
@@ -49,32 +49,13 @@ public class TerminalesViewHolder extends RecyclerView.ViewHolder {
 
         mView.setOnClickListener(listener);
         tvNombre.setText(terminalKey);
-        if(oferta.getFotoUrl()!=null && !oferta.getFotoUrl().equals(""))
-            Picasso.with(context)
-                    .load(oferta.getFotoUrl())
-                    .networkPolicy(NetworkPolicy.OFFLINE)
-                    .placeholder(R.drawable.phone_mockup)
-                    .error(R.drawable.phone_mockup)
-                    .into(ivFoto,new Callback() {
-                        @Override
-                        public void onSuccess() {
 
-                        }
-
-                        @Override
-                        public void onError() {
-                            //Try again online if cache failed
-                            Picasso.with(context)
-                                    .load(oferta.getFotoUrl())
-                                    .placeholder(R.drawable.phone_mockup)
-                                    .error(R.drawable.phone_mockup)
-                                    .into(ivFoto);
-                        }
-                    });
-               else
-            ivFoto.setImageDrawable(context.getResources().getDrawable(R.drawable.phone_mockup));
-
-        if(oferta.getPagoInicialCero()==null || oferta.getPagoInicialCero().equals(""))
+        Picasso.with(context)
+                .load(oferta.getFotoUrl())
+                .placeholder(R.drawable.phone_mockup)
+                .error(R.drawable.phone_mockup)
+                .into(ivFoto);
+       /* if(oferta.getPagoInicialCero()==null || oferta.getPagoInicialCero().equals(""))
             lnCero.setVisibility(View.GONE);
         else {
             lnCero.setVisibility(View.VISIBLE);
@@ -95,7 +76,7 @@ public class TerminalesViewHolder extends RecyclerView.ViewHolder {
             }
         }
 
-        /*if(oferta.getPagoInicialInfinita()==null || oferta.getPagoInicialInfinita().equals(""))
+        if(oferta.getPagoInicialInfinita()==null || oferta.getPagoInicialInfinita().equals(""))
             lnInfinita.setVisibility(View.GONE);
         else {
             lnInfinita.setVisibility(View.VISIBLE);
@@ -104,7 +85,7 @@ public class TerminalesViewHolder extends RecyclerView.ViewHolder {
                 tvPagoInicialInfinita.setText(Commons.tratarPrecio(oferta.getPagoInicialSinFin())+"€");
                 tvCuotaMensualInfinita.setText(formatoCuota(oferta.getCuotaSinFin()));
             }
-        }*/
+        }
 
         if(oferta.getPagoInicialSinFin()==null || oferta.getPagoInicialSinFin().equals(""))
             lnSinfin.setVisibility(View.GONE);
@@ -115,7 +96,7 @@ public class TerminalesViewHolder extends RecyclerView.ViewHolder {
                 tvPagoInicialSinfin.setText(Commons.tratarPrecio(oferta.getPagoInicialSinFin())+"€");
                 tvCuotaMensualSinfin.setText(formatoCuota(oferta.getCuotaSinFin()));
             }
-        }
+        }*/
 
     }
     public String formatoCuota(String cuota)

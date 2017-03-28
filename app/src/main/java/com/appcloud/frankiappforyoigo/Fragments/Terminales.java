@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -64,15 +65,21 @@ public class Terminales extends Fragment {
                         Intent intent = new Intent(getActivity(), DetalleTerminalActivity.class);
                         intent.putExtra(Config.KEY_TERMINAL, keyTerminal);
                         ImageView ivFoto = (ImageView) v.findViewById(R.id.iv_terminal_foto);
-                        TextView tvNombre = (TextView) v.findViewById(R.id.tv_terminal_nombre);
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        //TextView tvNombre = (TextView) v.findViewById(R.id.tv_terminal_nombre);
+                        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                             ivFoto.setTransitionName("foto_terminal");
+                            Pair<View, String> p1 = Pair.create((View) ivFoto, "foto_terminal");
+                            //Pair<View, String> p2 = Pair.create((View) tvNombre, "nombre_terminal");
+                            ActivityOptionsCompat options = ActivityOptionsCompat.
+                                    makeSceneTransitionAnimation(getActivity(), p1);
+                            startActivity(intent, options.toBundle());
                         }
-                        Pair<View, String> p1 = Pair.create((View) ivFoto, "foto_terminal");
-                        //Pair<View, String> p2 = Pair.create((View) tvNombre, "nombre_terminal");
-                        ActivityOptionsCompat options = ActivityOptionsCompat.
-                                makeSceneTransitionAnimation(getActivity(), p1);
-                        startActivity(intent, options.toBundle());
+                        else
+                        {
+                            startActivity(intent);
+                        }*/
+                        startActivity(intent);
+
                     }
                 };
                 viewHolder.bindToOferta(getActivity().getApplicationContext(),terminal, keyTerminal,onClickListener);

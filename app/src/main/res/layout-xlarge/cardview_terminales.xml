@@ -41,7 +41,7 @@
                 android:text="ADSL indirecto hasta 20MB"/>
 
 
-            <LinearLayout
+            <!--LinearLayout
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:padding="6dp"
@@ -160,7 +160,7 @@
                         android:textSize="16dp"
                         android:gravity="center_horizontal"/>
                 </LinearLayout>
-            </LinearLayout>
+            </LinearLayout!-->
 
             </LinearLayout>
 

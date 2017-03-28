@@ -1,6 +1,7 @@
 package com.appcloud.frankiappforyoigo.Fragments;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityOptionsCompat;
@@ -37,7 +38,7 @@ public class TarifasMovilesFragment extends Fragment implements TerminalTarifaRe
     private String keyTerminal;
     private OfertaTactica ofertaTactica;
     private RecyclerView rvTarifas;
-    private LinearLayout lnPagoUnicoPrepago, lnPagoUnicoContrato, lnPagoUnicoCero,lnPagoUnicoCinco,lnPagoUnicoInfinita, lnPagoUnicoSinfin, lnPagoUnicoUno, lnPagoUnico650 ;
+    private LinearLayout content,lnPagoUnicoPrepago, lnPagoUnicoContrato, lnPagoUnicoCero,lnPagoUnicoCinco,lnPagoUnicoInfinita, lnPagoUnicoSinfin, lnPagoUnicoUno, lnPagoUnico650 ;
     private TextView tvPrepagoUno, tvPrepago650, tvPagoUnicoCero, tvPagoUnicoCinco,tvPagoUnicoInfinita, tvPagoUnicoSinfin;
 
     public TarifasMovilesFragment() {
@@ -57,6 +58,7 @@ public class TarifasMovilesFragment extends Fragment implements TerminalTarifaRe
         lnPagoUnicoSinfin = (LinearLayout) parentView.findViewById(R.id.ln_pago_unico_sinfin);
         lnPagoUnicoUno = (LinearLayout) parentView.findViewById(R.id.ln_pago_unico_uno);
         lnPagoUnico650 = (LinearLayout) parentView.findViewById(R.id.ln_pago_unico_650);
+        content = (LinearLayout) parentView.findViewById(R.id.content);
         tvPrepagoUno = (TextView) parentView.findViewById(R.id.tv_pago_unico_uno);
         tvPrepago650 = (TextView) parentView.findViewById(R.id.tv_pago_unico_650);
         tvPagoUnicoCero = (TextView) parentView.findViewById(R.id.tv_pago_unico_cero);
@@ -71,9 +73,13 @@ public class TarifasMovilesFragment extends Fragment implements TerminalTarifaRe
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        rvTarifas.setNestedScrollingEnabled(false);
+        rvTarifas.setLayoutManager(new LinearLayoutManager(getContext()));
+        final List<TerminalTarifa> terminalTarifas = new ArrayList<>();
+        rvTarifas.setAdapter(new TerminalTarifaRecyclerAdapter(terminalTarifas,this,getContext()));
         keyTerminal = getArguments().getString("keyTerminal");
         if (keyTerminal != null) {
-            final List<TerminalTarifa> terminalTarifas = new ArrayList<>();
+
             DatabaseReference databaseReference = FirebaseSingleton.getDatabase().getReference();
             databaseReference.child("ofertas_tacticas").child(keyTerminal).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -85,27 +91,29 @@ public class TarifasMovilesFragment extends Fragment implements TerminalTarifaRe
                                 ofertaTactica.getPagoInicialCero(),
                                 ofertaTactica.getCuotaCero(),
                                 ofertaTactica.getPagoFinalCero()));
+                    rvTarifas.getAdapter().notifyItemInserted(terminalTarifas.size() - 1);
                     if (ofertaTactica.getCuotaCinco() != null && !ofertaTactica.getCuotaCinco().equals(""))
                         terminalTarifas.add(new TerminalTarifa(
                                 Config.TARIFA_CINCO,
                                 ofertaTactica.getPagoInicialCinco(),
                                 ofertaTactica.getCuotaCinco(),
                                 ofertaTactica.getPagoFinalCinco()));
+                    rvTarifas.getAdapter().notifyItemInserted(terminalTarifas.size() - 1);
                     if (ofertaTactica.getCuotaInfinita() != null && !ofertaTactica.getCuotaInfinita().equals(""))
                         terminalTarifas.add(new TerminalTarifa(
                                 Config.TARIFA_INFINITA,
                                 ofertaTactica.getPagoInicialInfinita(),
                                 ofertaTactica.getCuotaInfinita(),
                                 ofertaTactica.getPagoFinalInfinita()));
+                    rvTarifas.getAdapter().notifyItemInserted(terminalTarifas.size() - 1);
                     if (ofertaTactica.getCuotaSinFin() != null && !ofertaTactica.getCuotaSinFin().equals(""))
                         terminalTarifas.add(new TerminalTarifa(
                                 Config.TARIFA_SINFIN,
                                 ofertaTactica.getPagoInicialSinFin(),
                                 ofertaTactica.getCuotaSinFin(),
                                 ofertaTactica.getPagoFinalSinFin()));
-
-                    rvTarifas.setLayoutManager(new LinearLayoutManager(getContext()));
-                    rvTarifas.setAdapter(new TerminalTarifaRecyclerAdapter(terminalTarifas,null,getContext()));
+                    rvTarifas.getAdapter().notifyItemInserted(terminalTarifas.size() - 1);
+                    content.setVisibility(View.VISIBLE);
 
                     if ((ofertaTactica.getPagoUnicoCero() == null || ofertaTactica.getPagoUnicoCero().equals(""))
                             && (ofertaTactica.getPagoUnicoCinco() == null || ofertaTactica.getPagoUnicoCinco().equals(""))
@@ -207,15 +215,22 @@ public class TarifasMovilesFragment extends Fragment implements TerminalTarifaRe
         intent.putExtra(Config.PAGO_UNICO, pagoUnico);
         intent.setAction(Config.RESERVAR);
 
-        Pair<View, String> p1 = Pair.create((View) container, "color_bar");
-        ActivityOptionsCompat options = ActivityOptionsCompat.
-                makeSceneTransitionAnimation( getActivity(), p1);
-        startActivity(intent, options.toBundle());
+       /* if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Pair<View, String> p1 = Pair.create((View) container, "color_bar");
+            ActivityOptionsCompat options = ActivityOptionsCompat.
+                    makeSceneTransitionAnimation( getActivity(), p1);
+            startActivity(intent, options.toBundle());
+        }
+        else
+        {
+            startActivity(intent);
+        }*/
+        startActivity(intent);
 
     }
 
     @Override
-    public void onItemClick(View vista, TerminalTarifa terminalTarifa, String keyTarifa) {
-        clickTarifa(vista, keyTarifa, false);
+    public void onItemClick(View vista, TerminalTarifa terminalTarifa) {
+        clickTarifa(vista,terminalTarifa.getNombreTarifa(), false);
     }
 }

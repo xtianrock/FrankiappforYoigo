@@ -30,6 +30,7 @@ import com.appcloud.frankiappforyoigo.ViewPagerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -59,7 +60,7 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View parentView = inflater.inflate(R.layout.fragment_home, container, false);
-        mDatabase = FirebaseSingleton.getDatabase().getReference();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
         rvNuevosModelos = (RecyclerView)parentView.findViewById(R.id.list_mas_vendidos);
         rvMasBuscados = (RecyclerView)parentView.findViewById(R.id.list);
         rvNuevosModelos.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
@@ -200,14 +201,19 @@ public class HomeFragment extends Fragment {
                         Intent intent = new Intent(getActivity(), DetalleTerminalActivity.class);
                         intent.putExtra(Config.KEY_TERMINAL, keyTerminal);
                         ImageView ivFoto = (ImageView) v.findViewById(R.id.iv_terminal_foto);
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                             ivFoto.setTransitionName("foto_terminal");
+                            Pair<View, String> p1 = Pair.create((View) ivFoto, "foto_terminal");
+                            //Pair<View, String> p2 = Pair.create((View) tvNombre, "nombre_terminal");
+                            ActivityOptionsCompat options = ActivityOptionsCompat.
+                                    makeSceneTransitionAnimation(getActivity(), p1);
+                            startActivity(intent, options.toBundle());
                         }
-                        Pair<View, String> p1 = Pair.create((View) ivFoto, "foto_terminal");
-                        //Pair<View, String> p2 = Pair.create((View) tvNombre, "nombre_terminal");
-                        ActivityOptionsCompat options = ActivityOptionsCompat.
-                                makeSceneTransitionAnimation(getActivity(), p1);
-                        startActivity(intent, options.toBundle());
+                        else
+                        {
+                            startActivity(intent);
+                        }*/
+                        startActivity(intent);
                     }
                 };
                 viewHolder.bindToOferta(getActivity().getApplicationContext(),terminal,keyTerminal,onClickListener);
@@ -227,14 +233,19 @@ public class HomeFragment extends Fragment {
                         Intent intent = new Intent(getActivity(), DetalleTerminalActivity.class);
                         intent.putExtra(Config.KEY_TERMINAL, keyTerminal);
                         ImageView ivFoto = (ImageView) v.findViewById(R.id.iv_terminal_foto);
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                             ivFoto.setTransitionName("foto_terminal");
+                            Pair<View, String> p1 = Pair.create((View) ivFoto, "foto_terminal");
+                            //Pair<View, String> p2 = Pair.create((View) tvNombre, "nombre_terminal");
+                            ActivityOptionsCompat options = ActivityOptionsCompat.
+                                    makeSceneTransitionAnimation(getActivity(), p1);
+                            startActivity(intent, options.toBundle());
                         }
-                        Pair<View, String> p1 = Pair.create((View) ivFoto, "foto_terminal");
-                        //Pair<View, String> p2 = Pair.create((View) tvNombre, "nombre_terminal");
-                        ActivityOptionsCompat options = ActivityOptionsCompat.
-                                makeSceneTransitionAnimation(getActivity(), p1);
-                        startActivity(intent, options.toBundle());
+                        else
+                        {
+                            startActivity(intent);
+                        }*/
+                        startActivity(intent);
                     }
                 };
                 viewHolder.bindToOferta(getActivity().getApplicationContext(),terminal,keyTerminal,onClickListener);

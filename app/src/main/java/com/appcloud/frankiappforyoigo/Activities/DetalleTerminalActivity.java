@@ -2,6 +2,7 @@ package com.appcloud.frankiappforyoigo.Activities;
 
 import android.content.Context;
 import android.content.pm.ActivityInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
@@ -20,6 +21,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 public class DetalleTerminalActivity extends BaseActivity {
@@ -35,8 +37,10 @@ public class DetalleTerminalActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_terminal);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            postponeEnterTransition();
+        }
         //DatabaseReference databaseReference = FirebaseSingleton.getDatabase().getReference();
-
 
 
         keyTerminal = getIntent().getStringExtra(Config.KEY_TERMINAL);
@@ -60,7 +64,19 @@ public class DetalleTerminalActivity extends BaseActivity {
                             .load(ofertaTactica.getFotoUrl())
                             .placeholder(R.drawable.phone_mockup)
                             .error(R.drawable.phone_mockup).
-                            into(ivFotoTerminal);
+                            into(ivFotoTerminal, new Callback() {
+                                @Override
+                                public void onSuccess() {
+                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                                        startPostponedEnterTransition();
+                                    }
+                                }
+
+                                @Override
+                                public void onError() {
+
+                                }
+                            });
                     getSupportActionBar().setTitle(keyTerminal);
                     tvPantalla.setText(ofertaTactica.getPantalla()+"''");
                     tvProcesador.setText(ofertaTactica.getProcesador());

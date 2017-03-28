@@ -16,7 +16,7 @@ public class Config {
     public static final String COMBINADA_MORADA_300 = "combinada morada 300";
     public static final String COMBINADA_AZUL_300 = "combinada azul 300";
     public static final String COMBINADA_NARANJA_50 = "combinada naranja 50";
-    public static final String COMBINADA_VERDE_50 = "combinadaverde 50";
+    public static final String COMBINADA_VERDE_50 = "combinada verde 50";
     public static final String COMBINADA_MORADA_50 = "combinada morada 50";
     public static final String COMBINADA_AZUL_50= "combinada azul 50";
 
